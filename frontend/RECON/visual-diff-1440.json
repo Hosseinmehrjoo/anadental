@@ -1,0 +1,26 @@
+{
+  "original": {
+    "width": 1440,
+    "height": 10469
+  },
+  "clone": {
+    "width": 1440,
+    "height": 10469
+  },
+  "comparedCanvas": {
+    "width": 1440,
+    "height": 10469
+  },
+  "threshold": 0.08,
+  "changedPixels": 1364476,
+  "totalPixels": 15075360,
+  "diffPixelRatio": 0.09051034270491716,
+  "meanAbsDiff": 0.02937961953652651,
+  "rmse": 0.10846218062590797,
+  "visualScore": 3,
+  "files": {
+    "original": "/persistent/home/hossein/anaprojacts/tools/open-design/.od/projects/6202552f-d928-4040-aa18-2740add8ebd9/RECON/screenshots/original-1440.png",
+    "clone": "/persistent/home/hossein/anaprojacts/tools/open-design/.od/projects/6202552f-d928-4040-aa18-2740add8ebd9/RECON/screenshots/clone-1440.png",
+    "diff": "/persistent/home/hossein/anaprojacts/tools/open-design/.od/projects/6202552f-d928-4040-aa18-2740add8ebd9/RECON/screenshots/visual-diff-1440.png"
+  }
+}

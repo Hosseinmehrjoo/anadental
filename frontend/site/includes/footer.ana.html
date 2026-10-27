@@ -1,0 +1,88 @@
+<div class="ana-foot">
+  <div class="ana-foot__top mainView">
+    <a class="ana-foot__logo" href="/">
+      <img src="/assets/media/2025/09/logo.webp" alt="آنادنت" width="92" height="46">
+    </a>
+    <div class="ana-foot__social" aria-label="شبکه‌های اجتماعی">
+      <a href="https://t.me/+989125142254" aria-label="تلگرام" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M9.8 15.1 9.6 18.4c.4 0 .6-.2.8-.4l1.9-1.8 4 2.9c.7.4 1.2.2 1.4-.7l2.5-11.8c.2-.9-.3-1.3-1-1L3.7 9.8c-.9.3-.9.8-.2 1l4.1 1.3 9.5-6c.4-.3.9-.1.5.2z"/></svg>
+      </a>
+      <a href="https://wa.me/+989125142254" aria-label="واتس‌اپ" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M12 3.2A8.7 8.7 0 0 0 4.6 16.3L3.4 20.8l4.6-1.2A8.8 8.8 0 1 0 12 3.2m5 12.4c-.2.6-1.2 1.1-1.7 1.2-.4.1-1 .1-1.6-.1-.4-.1-.9-.3-1.5-.5-2.6-1.1-4.3-3.8-4.4-4-.1-.2-1-1.3-1-2.5s.6-1.8.9-2 .6-.3.8-.3h.6c.2 0 .4 0 .6.5.2.6.7 1.9.8 2 .1.2.1.3 0 .5l-.3.5c-.1.2-.3.4-.1.6.2.3.7 1.1 1.5 1.8 1 .8 1.8 1.1 2.1 1.2.2.1.4.1.5-.1l.6-.7c.2-.2.3-.2.6-.1l1.8.8c.3.1.4.2.5.3.1.3.1.8-.1 1.2"/></svg>
+      </a>
+      <a href="tel:02191300511" aria-label="تماس">
+        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path fill="currentColor" d="M7 3.8h2.2l1.2 3-1.5.9a11 11 0 0 0 5.4 5.4l.9-1.5 3 1.2V17a2 2 0 0 1-2.2 2A15 15 0 0 1 5 8a2 2 0 0 1 2-4.2"/></svg>
+      </a>
+    </div>
+    <form class="ana-news" id="ana-news-form">
+      <label class="ana-news__field">
+        <span class="visually-hidden">ایمیل خبرنامه</span>
+        <input type="email" name="email" required placeholder="برای عضویت در خبرنامه، ایمیل خود را وارد کنید." autocomplete="email">
+        <button type="submit">ارسال</button>
+      </label>
+      <p class="ana-news__status" role="status"></p>
+    </form>
+  </div>
+  <div class="ana-foot__cols mainView">
+    <section>
+      <h2>دسترسی سریع</h2>
+      <ul>
+        <li><a href="/">صفحه اصلی</a></li>
+        <li><a href="/blog.php">مجله آنادنت</a></li>
+        <li><a href="/contact.php">تماس با ما</a></li>
+        <li><a href="/%d8%af%d8%b1%d8%a8%d8%a7%d8%b1%d9%87-%d9%85%d8%a7/">درباره ما</a></li>
+      </ul>
+    </section>
+    <section>
+      <h2>لینک‌های مفید</h2>
+      <ul>
+        <li><a href="/implant-price/">قیمت ایمپلنت</a></li>
+        <li><a href="/bone-grafting/">پیوند استخوان دندان</a></li>
+        <li><a href="/%d8%b3%d8%a4%d8%a7%d9%84%d8%a7%d8%aa-%d9%85%d8%aa%d8%af%d8%a7%d9%88%d9%84/">سؤالات متداول</a></li>
+      </ul>
+    </section>
+    <section>
+      <h2>خدمات مشتریان</h2>
+      <ul>
+        <li><a href="tel:02191300511">مشاوره رایگان</a></li>
+        <li><a href="tel:02191300511">رزرو وقت</a></li>
+      </ul>
+    </section>
+    <section class="ana-foot__brandcol">
+      <h2>آنادنت</h2>
+      <p>مرکز تخصصی کاشت ایمپلنت دندان</p>
+      <p class="ana-foot__addr">جنت آباد مركزى ، روبروى بلوار بعثت رو به رو مسجد جامع ، ساختمان بانك شهر ، پلاک ۱ طبقه دوم</p>
+    </section>
+  </div>
+  <div class="ana-foot__copy mainView">
+    <p>تمامی حقوق مادی و معنوی این وبسایت متعلق به آنادنت است.</p>
+  </div>
+</div>
+<script>
+(function () {
+  var form = document.getElementById('ana-news-form');
+  if (!form) return;
+  form.addEventListener('submit', function (event) {
+    event.preventDefault();
+    var status = form.querySelector('.ana-news__status');
+    var email = (form.querySelector('[name=email]') || {}).value || '';
+    var btn = form.querySelector('button');
+    if (!window.DentalApi) { status.textContent = 'ارسال ممکن نشد.'; return; }
+    btn.disabled = true;
+    status.textContent = 'در حال ثبت…';
+    DentalApi.contact({
+      name: 'عضو خبرنامه',
+      email: email.trim(),
+      phone: '',
+      subject: 'عضویت خبرنامه',
+      message: 'درخواست عضویت در خبرنامه با ایمیل ' + email.trim(),
+      website: ''
+    }).then(function (res) {
+      status.textContent = (res && res.message) || 'ایمیل شما ثبت شد.';
+      form.reset();
+    }).catch(function (err) {
+      status.textContent = (err && err.message) || 'ثبت ایمیل ممکن نشد.';
+    }).finally(function () { btn.disabled = false; });
+  });
+})();
+</script>

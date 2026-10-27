@@ -1,0 +1,13 @@
+.env
+backend/config.php
+backend/installed.lock
+backend/uploads/*
+!backend/uploads/.gitkeep
+frontend/site/assets/images/uploads/*
+!frontend/site/assets/images/uploads/.gitkeep
+server-imformation.txt
+*.log
+frontend/site/backend/*
+!frontend/site/backend/.gitkeep
+docker-compose.override.yml
+backups/

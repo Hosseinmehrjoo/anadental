@@ -1,0 +1,17 @@
+# آنادنت — دسترسی خزنده‌ها
+User-agent: *
+Allow: /
+Disallow: /backend/admin/
+Disallow: /backend/api/
+Disallow: /backend/install.php
+Disallow: /implant-price/
+User-agent: Googlebot
+Allow: /
+Disallow: /backend/admin/
+Disallow: /backend/api/
+Disallow: /backend/install.php
+
+User-agent: Googlebot-Image
+Allow: /assets/
+
+Sitemap: https://ana-dental.ir/sitemap.php

@@ -1,0 +1,606 @@
+.dental-inner-page {
+  background: #fff;
+  color: #1d264f;
+  font-family: IRANSansXFaNum, Tahoma, sans-serif;
+  overflow-x: clip;
+}
+
+.dental-page {
+  padding: 2.5rem 1.25rem 4rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.dental-page h1 {
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  margin: 0 0 0.75rem;
+  color: #1d264f;
+}
+
+.dental-lead {
+  color: #4b5569;
+  margin: 0 0 2rem;
+  line-height: 1.8;
+}
+
+.dental-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+.dental-card-link {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border-bottom: 1px solid #e6eef3;
+  padding-bottom: 1.25rem;
+}
+
+.dental-card-link img {
+  width: 100%;
+  aspect-ratio: 16/10;
+  object-fit: cover;
+  border-radius: 12px;
+  background: #f3f7fa;
+}
+
+.dental-card-link h2 {
+  font-size: 1.1rem;
+  margin: 0.85rem 0 0.4rem;
+}
+
+.dental-card-link p {
+  margin: 0;
+  color: #5b6478;
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+.dental-meta {
+  color: #8090a3;
+  font-size: 0.85rem;
+  margin: 0.5rem 0 1rem;
+}
+
+.dental-article {
+  max-width: 760px;
+}
+
+.dental-article .cover {
+  width: 100%;
+  border-radius: 16px;
+  margin: 1rem 0 1.5rem;
+}
+
+.dental-article .content {
+  line-height: 2;
+  font-size: 1.05rem;
+}
+
+.dental-article .content img {
+  max-width: 100%;
+  height: auto;
+}
+
+.dental-form {
+  max-width: 520px;
+  display: grid;
+  gap: 1rem;
+}
+
+.dental-form label {
+  display: grid;
+  gap: 0.35rem;
+  font-weight: 600;
+}
+
+.dental-form input,
+.dental-form textarea {
+  border: 1px solid #c9d7e3;
+  border-radius: 10px;
+  padding: 0.8rem 0.9rem;
+  font: inherit;
+}
+
+.dental-form button {
+  background: #3090b6;
+  color: #fff;
+  border: 0;
+  border-radius: 10px;
+  padding: 0.9rem 1.2rem;
+  font: inherit;
+  cursor: pointer;
+}
+
+.dental-form button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
+.dental-empty,
+.dental-error {
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  background: #f5f8fb;
+}
+
+.dental-error {
+  background: #fff1f0;
+  color: #b42318;
+}
+
+.dental-comments {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid #e6eef3;
+}
+
+.dental-comment {
+  padding: 1rem 0;
+  border-bottom: 1px solid #eef3f7;
+}
+
+.dental-comment strong {
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+.dental-cats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.dental-cats a {
+  text-decoration: none;
+  color: #3090b6;
+  border: 1px solid #cfe3ee;
+  border-radius: 999px;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.9rem;
+}
+
+.dental-cats a.is-active {
+  background: #3090b6;
+  color: #fff;
+  border-color: #3090b6;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+.dental-page:has(.ana-mag),
+.dental-page:has(.ana-post) {
+  max-width: 1180px;
+}
+
+/* Footer */
+.site-footer.AnaDentalFooter {
+  background: #2c4a38 !important;
+  color: #fff !important;
+  padding: 36px 0 18px;
+  margin-top: 48px;
+  position: relative;
+}
+.AnaDentalFooter::before,
+.AnaDentalFooter::after {
+  display: none !important;
+}
+.AnaDentalFooter #back-to-top {
+  top: -78px;
+  z-index: 4;
+}
+.ana-foot__top,
+.ana-foot__cols,
+.ana-foot__copy {
+  display: flex;
+  gap: 28px;
+  align-items: center;
+  justify-content: space-between;
+}
+.ana-foot__top { margin-bottom: 28px; }
+.ana-foot__logo img {
+  width: 92px;
+  height: auto;
+  background: #fff;
+  border-radius: 50%;
+  padding: 6px;
+}
+.ana-foot__social { display: flex; gap: 10px; }
+.ana-foot__social a {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #fff;
+  color: #2f6b4f;
+  display: grid;
+  place-items: center;
+}
+.ana-news { margin: 0; flex: 1; max-width: 460px; }
+.ana-news__field {
+  display: flex;
+  background: #fff;
+  border-radius: 999px;
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,.4);
+}
+.ana-news input {
+  flex: 1;
+  border: 0;
+  padding: 12px 16px;
+  font: inherit;
+  outline: none;
+  min-width: 0;
+  color: #1d264f;
+}
+.ana-news button {
+  border: 0;
+  background: #e7efe4;
+  color: #244033;
+  padding: 0 18px;
+  font: inherit;
+  cursor: pointer;
+}
+.ana-news__status { margin: 6px 12px 0; font-size: 13px; min-height: 1em; }
+.ana-foot__cols {
+  align-items: flex-start;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  padding-top: 8px;
+}
+.ana-foot__cols h2 {
+  margin: 0 0 12px;
+  font-size: 16px;
+  color: #fff !important;
+}
+.ana-foot__cols ul { list-style: none; margin: 0; padding: 0; }
+.ana-foot__cols li { margin: 0 0 8px; }
+.ana-foot__cols a { color: #fff !important; text-decoration: none; }
+.ana-foot__cols a::before { content: "• "; color: #fff; }
+.ana-foot,
+.ana-foot p,
+.ana-foot__copy,
+.ana-foot__copy p {
+  color: #fff !important;
+}
+.ana-foot__addr, .ana-foot__brandcol p { margin: 0 0 8px; line-height: 1.9; font-size: 14px; }
+.ana-foot__copy {
+  margin-top: 22px;
+  border-top: 1px solid rgba(255,255,255,.25);
+  padding-top: 12px;
+  font-size: 13px;
+}
+.ana-foot__copy p { margin: 0; }
+
+/* Magazine archive */
+.ana-mag-head h1 { margin-bottom: .25rem; }
+.ana-mag-head p { color: #667085; margin: 0 0 1.5rem; }
+.ana-mag-features,
+.ana-mag-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+.ana-mag-card {
+  background: #fff;
+  border: 1px solid #e6eee8;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(30, 50, 40, .05);
+  display: flex;
+  flex-direction: column;
+}
+.ana-mag-card__media img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  display: block;
+  background: #f3f6f4;
+}
+.ana-mag-card__body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.ana-mag-card__cat { color: #6b8f78; font-size: 12px; }
+.ana-mag-card h2 { font-size: 1rem; margin: 0; line-height: 1.7; }
+.ana-mag-card h2 a { color: #1d264f; text-decoration: none; }
+.ana-mag-card p {
+  margin: 0;
+  color: #5c6778;
+  font-size: .92rem;
+  line-height: 1.8;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.ana-mag-card__foot {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  color: #8b95a5;
+  font-size: 12px;
+}
+.ana-mag-more {
+  border: 1px solid #d5e3d8;
+  border-radius: 999px;
+  padding: 4px 10px;
+  text-decoration: none;
+  color: #3d6b52;
+}
+.ana-news--banner {
+  margin: 28px 0;
+  max-width: none;
+  background: #8ea394;
+  color: #fff;
+  border-radius: 18px;
+  padding: 18px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.ana-news--banner p { margin: 0; }
+.ana-news--banner .ana-news__field { min-width: min(100%, 420px); }
+.ana-mag-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 280px;
+  gap: 22px;
+  align-items: start;
+}
+.ana-mag-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.ana-mag-filters a {
+  text-decoration: none;
+  color: #3d4a44;
+  background: #f4f7f5;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 14px;
+}
+.ana-mag-filters a.is-active { background: #8ea394; color: #fff; }
+.ana-mag-box {
+  border: 1px solid #e5eee8;
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 16px;
+  background: #fff;
+}
+.ana-mag-box h2 { margin: 0 0 6px; font-size: 1.05rem; color: #243028; }
+.ana-mag-box__lead, .ana-follow p { margin: 0 0 10px; color: #667085; font-size: 13px; }
+.ana-mag-box ul { list-style: none; margin: 0; padding: 0; }
+.ana-mag-box li { margin: 0 0 10px; }
+.ana-mag-box a { color: #1d264f; text-decoration: none; line-height: 1.7; }
+.ana-follow__links { display: flex; gap: 8px; flex-wrap: wrap; }
+.ana-follow__links a {
+  background: #f3f7f4;
+  border-radius: 999px;
+  padding: 6px 10px;
+  text-decoration: none;
+  color: #244033;
+}
+
+/* Single post */
+.ana-post__titlebar {
+  background: #e7f0ea;
+  border-radius: 14px;
+  padding: 14px 18px;
+  margin-bottom: 0;
+}
+.ana-post__titlebar h1 { margin: 0; font-size: clamp(1.2rem, 2vw, 1.7rem); line-height: 1.55; }
+
+.ana-post__cover {
+  margin: 16px calc(50% - 50vw) 22px;
+  width: 100vw;
+  max-width: 100vw;
+  padding: 0;
+  line-height: 0;
+}
+.ana-post__cover img {
+  display: block;
+  width: 100%;
+  max-height: min(56vw, 520px);
+  object-fit: cover;
+  object-position: center;
+}
+
+.ana-post__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) min(300px, 32%);
+  gap: 22px;
+  align-items: start;
+}
+.ana-post__facts {
+  margin-bottom: 14px;
+}
+.ana-post__facts-label {
+  margin: 0 0 6px;
+  font-weight: 600;
+  color: #2f4a38;
+}
+.ana-post__facts ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+.ana-post__facts li {
+  border: 1px solid #e5eee8;
+  border-radius: 12px;
+  padding: 10px 8px;
+  background: #fff;
+  text-align: center;
+}
+.ana-post__facts span { display: block; color: #80908a; font-size: 12px; }
+.ana-post__facts strong { display: block; margin-top: 4px; font-size: 13px; word-break: break-word; }
+
+.ana-post__lead {
+  color: #3d4a44;
+  line-height: 2;
+  margin: 0 0 16px;
+}
+
+.ana-post__body-box {
+  background: #ededed;
+  border-radius: 16px;
+  padding: clamp(1rem, 2.5vw, 1.75rem);
+  box-shadow:
+    0 4px 22px rgba(29, 38, 79, 0.1),
+    0 2px 8px rgba(0, 0, 0, 0.06);
+  margin-bottom: 28px;
+}
+
+.ana-post__content {
+  line-height: 2.05;
+  font-size: 1.02rem;
+  color: #1d264f;
+  overflow-wrap: anywhere;
+}
+.ana-post__content h2,
+.ana-post__content h3 {
+  scroll-margin-top: 96px;
+  color: #1d264f;
+}
+.ana-post__content img,
+.ana-post__content video,
+.ana-post__content iframe {
+  max-width: 100%;
+  height: auto;
+}
+.ana-post__content table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+.ana-post__side {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.ana-post-toc {
+  position: sticky;
+  top: clamp(72px, 12vw, 96px);
+  z-index: 2;
+  max-height: calc(100vh - 110px);
+  overflow: auto;
+  overscroll-behavior: contain;
+}
+.ana-post-toc__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: toc;
+}
+.ana-post-toc__item {
+  margin: 0 0 8px;
+  line-height: 1.65;
+}
+.ana-post-toc__item--sub {
+  margin-inline-start: 12px;
+  font-size: 0.92em;
+}
+.ana-post-toc__item a {
+  display: block;
+  padding: 6px 10px;
+  border-radius: 8px;
+  color: #1d264f;
+  text-decoration: none;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.ana-post-toc__item a:hover,
+.ana-post-toc__item a.is-active {
+  background: #e7f0ea;
+  color: #244033;
+}
+
+.dental-comments {
+  margin-top: 8px;
+}
+.dental-comments h2 { font-size: 1.25rem; }
+.dental-form label { display: block; margin-bottom: 12px; }
+.dental-form input,
+.dental-form textarea {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin-top: 4px;
+}
+.dental-comment__children { margin-inline-start: 1rem; }
+
+/* Inner pages: prevent horizontal scroll from full-bleed cover */
+.dental-page:has(.ana-post) {
+  overflow-x: clip;
+}
+
+@media (max-width: 980px) {
+  .ana-foot__cols,
+  .ana-mag-features,
+  .ana-mag-grid,
+  .ana-mag-layout,
+  .ana-post__layout,
+  .ana-post__facts ul {
+    grid-template-columns: 1fr;
+  }
+  .ana-foot__top { flex-wrap: wrap; }
+  .ana-news { max-width: none; width: 100%; }
+
+  .ana-post__side {
+    order: -1;
+  }
+  .ana-post-toc {
+    position: static;
+    max-height: none;
+  }
+  .ana-post__cover img {
+    max-height: min(62vw, 380px);
+  }
+  .ana-post__facts ul {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .dental-page {
+    padding: 1.25rem 1rem 3rem;
+  }
+  .ana-post__facts ul {
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+  .ana-post__body-box {
+    padding: 1rem 0.85rem;
+    border-radius: 12px;
+  }
+  .ana-foot__cols {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .ana-mag-card__foot {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 400px) {
+  .ana-foot__cols {
+    grid-template-columns: 1fr;
+  }
+}

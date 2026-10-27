@@ -1,0 +1,6 @@
+# Prefer revalidation for admin styles (avoid week-long stale CSS)
+<IfModule mod_headers.c>
+  <FilesMatch "\.(css)$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+</IfModule>

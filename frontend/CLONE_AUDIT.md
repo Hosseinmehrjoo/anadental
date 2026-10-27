@@ -1,0 +1,295 @@
+# Clone Audit
+
+- Project: /persistent/home/hossein/anaprojacts/tools/open-design/.od/projects/6202552f-d928-4040-aa18-2740add8ebd9
+- Scanned files: 50
+- Findings: 273
+
+## 保真度硬伤（字体 / 图片 / 颜色）
+- 未发现
+
+## 追踪脚本 / 统计像素
+- .od-skills/web-clone-75cdccc16d/SKILL.md:157 · Google Tag Manager · `googletagmanager`
+
+## 原站品牌残留
+- index.html:6 · brand residue: آرامش · `آرامش`
+- index.html:13 · brand residue: آرامش · `آرامش`
+- site/index-original.html:12 · brand residue: آرامش · `آرامش`
+- site/index-original.html:13 · brand residue: آرامش · `آرامش`
+- site/index-original.html:18 · brand residue: آرامش · `آرامش`
+- site/index-original.html:19 · brand residue: آرامش · `آرامش`
+- site/index-original.html:21 · brand residue: آرامش · `آرامش`
+- site/index-original.html:24 · brand residue: آرامش · `آرامش`
+- site/index-original.html:25 · brand residue: آرامش · `آرامش`
+- site/index-original.html:34 · brand residue: آرامش · `آرامش`
+- site/index-original.html:35 · brand residue: آرامش · `آرامش`
+- site/index-original.html:171 · brand residue: آرامش · `آرامش`
+- site/index-original.html:307 · brand residue: آرامش · `آرامش`
+- site/index-original.html:307 · brand residue: آرامش · `آرامش`
+- site/index-original.html:316 · brand residue: آرامش · `آرامش`
+- site/index-original.html:449 · brand residue: آرامش · `آرامش`
+- site/index-original.html:454 · brand residue: آرامش · `آرامش`
+- site/index-original.html:484 · brand residue: آرامش · `آرامش`
+- site/index-original.html:493 · brand residue: آرامش · `آرامش`
+- site/index-original.html:521 · brand residue: آرامش · `آرامش`
+- site/index-original.html:571 · brand residue: آرامش · `آرامش`
+- site/index-original.html:580 · brand residue: آرامش · `آرامش`
+- site/index-original.html:589 · brand residue: آرامش · `آرامش`
+- site/index-original.html:598 · brand residue: آرامش · `آرامش`
+- site/index-original.html:607 · brand residue: آرامش · `آرامش`
+- site/index-original.html:616 · brand residue: آرامش · `آرامش`
+- site/index-original.html:651 · brand residue: آرامش · `آرامش`
+- site/index-original.html:652 · brand residue: آرامش · `آرامش`
+- site/index-original.html:708 · brand residue: آرامش · `آرامش`
+- site/index-original.html:777 · brand residue: آرامش · `آرامش`
+- site/index-original.html:779 · brand residue: آرامش · `آرامش`
+- site/index-original.html:779 · brand residue: آرامش · `آرامش`
+- site/index-original.html:784 · brand residue: آرامش · `آرامش`
+- site/index-original.html:809 · brand residue: آرامش · `آرامش`
+- site/index-original.html:840 · brand residue: آرامش · `آرامش`
+- site/index-original.html:1071 · brand residue: آرامش · `آرامش`
+- site/index-original.html:1081 · brand residue: آرامش · `آرامش`
+- site/index-original.html:1111 · brand residue: آرامش · `آرامش`
+- site/index-original.html:1135 · brand residue: آرامش · `آرامش`
+- site/index-original.html:1230 · brand residue: آرامش · `آرامش`
+- site/index.html:14 · brand residue: آرامش · `آرامش`
+- site/index.html:15 · brand residue: آرامش · `آرامش`
+- site/index.html:20 · brand residue: آرامش · `آرامش`
+- site/index.html:21 · brand residue: آرامش · `آرامش`
+- site/index.html:23 · brand residue: آرامش · `آرامش`
+- site/index.html:26 · brand residue: آرامش · `آرامش`
+- site/index.html:27 · brand residue: آرامش · `آرامش`
+- site/index.html:36 · brand residue: آرامش · `آرامش`
+- site/index.html:37 · brand residue: آرامش · `آرامش`
+- site/index.html:173 · brand residue: آرامش · `آرامش`
+- site/index.html:309 · brand residue: آرامش · `آرامش`
+- site/index.html:309 · brand residue: آرامش · `آرامش`
+- site/index.html:318 · brand residue: آرامش · `آرامش`
+- site/index.html:451 · brand residue: آرامش · `آرامش`
+- site/index.html:456 · brand residue: آرامش · `آرامش`
+- site/index.html:486 · brand residue: آرامش · `آرامش`
+- site/index.html:495 · brand residue: آرامش · `آرامش`
+- site/index.html:523 · brand residue: آرامش · `آرامش`
+- site/index.html:573 · brand residue: آرامش · `آرامش`
+- site/index.html:582 · brand residue: آرامش · `آرامش`
+- site/index.html:591 · brand residue: آرامش · `آرامش`
+- site/index.html:600 · brand residue: آرامش · `آرامش`
+- site/index.html:609 · brand residue: آرامش · `آرامش`
+- site/index.html:618 · brand residue: آرامش · `آرامش`
+- site/index.html:653 · brand residue: آرامش · `آرامش`
+- site/index.html:654 · brand residue: آرامش · `آرامش`
+- site/index.html:710 · brand residue: آرامش · `آرامش`
+- site/index.html:779 · brand residue: آرامش · `آرامش`
+- site/index.html:781 · brand residue: آرامش · `آرامش`
+- site/index.html:781 · brand residue: آرامش · `آرامش`
+- site/index.html:786 · brand residue: آرامش · `آرامش`
+- site/index.html:811 · brand residue: آرامش · `آرامش`
+- site/index.html:842 · brand residue: آرامش · `آرامش`
+- site/index.html:1073 · brand residue: آرامش · `آرامش`
+- site/index.html:1083 · brand residue: آرامش · `آرامش`
+- site/index.html:1113 · brand residue: آرامش · `آرامش`
+- site/index.html:1137 · brand residue: آرامش · `آرامش`
+- site/index.html:1232 · brand residue: آرامش · `آرامش`
+
+## 日文残留
+- 未发现
+
+## TODO / 占位内容
+- .od-skills/web-clone-75cdccc16d/SKILL.md:267 · TODO / placeholder content · `TODO`
+- .od-skills/web-clone-75cdccc16d/SKILL.md:282 · TODO / placeholder content · `TODO`
+- .od-skills/web-clone-75cdccc16d/references/deliverables.md:137 · TODO / placeholder content · `TODO`
+- .od-skills/web-clone-75cdccc16d/references/design-dna.md:41 · TODO / placeholder content · `TODO`
+- site/wp-content/uploads/ds-asset-cache/ds-bundle-js-409edc9553bebdaf.js:1101 · TODO / placeholder content · `ToDo`
+- site/wp-content/uploads/ds-asset-cache/ds-bundle-js-409edc9553bebdaf.js:1542 · TODO / placeholder content · `ToDo`
+- site/wp-content/uploads/ds-asset-cache/ds-bundle-js-409edc9553bebdaf.js:1585 · TODO / placeholder content · `ToDo`
+
+## 外部依赖 / 外链风险
+- .od-skills/web-clone-75cdccc16d/SKILL.md:64 · external URL · `https://raw.githubusercontent.com/`
+- .od-skills/web-clone-75cdccc16d/SKILL.md:173 · external URL · `http://127.0.0.1:`
+- .od-skills/web-clone-75cdccc16d/SKILL.md:178 · external URL · `http://127.0.0.1:`
+- .od-skills/web-clone-75cdccc16d/SKILL.md:185 · external URL · `http://127.0.0.1:`
+- .od-skills/web-clone-75cdccc16d/references/design-dna.md:7 · external URL · `https://github.com/zanwei/design-dna`
+- .od-skills/web-clone-75cdccc16d/references/effect-extraction.md:6 · external URL · `https://github.com/lixiaolin94/skills`
+- .od-skills/web-clone-75cdccc16d/references/marbles-case.md:3 · external URL · `https://chiuhans111.github.io/marbles/`
+- .od-skills/web-clone-75cdccc16d/references/static-mirror.md:38 · external URL · `https://use.typekit.net/`
+- .od-skills/web-clone-75cdccc16d/references/static-mirror.md:49 · external URL · `https://use.typekit.net/`
+- .od-skills/web-clone-75cdccc16d/references/static-mirror.md:51 · external URL · `https://use\.typekit\.net/`
+- assets/css/arameshdental.com/ds-bundle-css-86786fe9add48d8e-e65b0eb5da.css:3 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/fonts/woff2/IRANSansXFaNum-Thin.woff2`
+- assets/css/arameshdental.com/ds-bundle-css-86786fe9add48d8e-e65b0eb5da.css:3 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/fonts/woff/IRANSansXFaNum-Thin.woff`
+- assets/css/arameshdental.com/ds-bundle-css-86786fe9add48d8e-e65b0eb5da.css:3 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/fonts/woff2/IRANSansXFaNum-UltraLight.woff2`
+- assets/css/arameshdental.com/ds-bundle-css-86786fe9add48d8e-e65b0eb5da.css:3 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/fonts/woff/IRANSansXFaNum-UltraLight.woff`
+- assets/css/arameshdental.com/ds-bundle-css-86786fe9add48d8e-e65b0eb5da.css:3 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/fonts/woff2/IRANSansXFaNum-Light.woff2`
+- assets/css/arameshdental.com/ds-bundle-css-86786fe9add48d8e-e65b0eb5da.css:3 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/fonts/woff/IRANSansXFaNum-Light.woff`
+- assets/css/arameshdental.com/ds-bundle-css-86786fe9add48d8e-e65b0eb5da.css:3 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/fonts/woff2/IRANSansXFaNum-Medium.woff2`
+- assets/css/arameshdental.com/ds-bundle-css-86786fe9add48d8e-e65b0eb5da.css:3 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/fonts/woff/IRANSansXFaNum-Medium.woff`
+- assets/css/arameshdental.com/ds-bundle-css-86786fe9add48d8e-e65b0eb5da.css:3 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/fonts/woff2/IRANSansXFaNum-DemiBold.woff2`
+- assets/css/arameshdental.com/ds-bundle-css-86786fe9add48d8e-e65b0eb5da.css:3 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/fonts/woff/IRANSansXFaNum-DemiBold.woff`
+- assets/css/arameshdental.com/ds-bundle-css-86786fe9add48d8e-e65b0eb5da.css:3 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/fonts/woff2/IRANSansXFaNum-Extrabold.woff2`
+- assets/css/arameshdental.com/ds-bundle-css-86786fe9add48d8e-e65b0eb5da.css:3 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/fonts/woff/IRANSansXFaNum-Extrabold.woff`
+- assets/css/arameshdental.com/ds-bundle-css-86786fe9add48d8e-e65b0eb5da.css:3 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/fonts/woff2/IRANSansXFaNum-Black.woff2`
+- assets/css/arameshdental.com/ds-bundle-css-86786fe9add48d8e-e65b0eb5da.css:3 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/fonts/woff/IRANSansXFaNum-Black.woff`
+- assets/css/arameshdental.com/ds-bundle-css-86786fe9add48d8e-e65b0eb5da.css:3 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/fonts/woff2/IRANSansXFaNum-Bold.woff2`
+- assets/css/arameshdental.com/ds-bundle-css-86786fe9add48d8e-e65b0eb5da.css:3 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/fonts/woff/IRANSansXFaNum-Bold.woff`
+- assets/css/arameshdental.com/ds-bundle-css-86786fe9add48d8e-e65b0eb5da.css:3 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/fonts/woff2/IRANSansXFaNum-Regular.woff2`
+- assets/css/arameshdental.com/ds-bundle-css-86786fe9add48d8e-e65b0eb5da.css:3 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/fonts/woff/IRANSansXFaNum-Regular.woff`
+- assets/css/arameshdental.com/ds-bundle-css-86786fe9add48d8e-e65b0eb5da.css:3 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/fonts/lg.ttf?22t19m`
+- assets/css/arameshdental.com/ds-bundle-css-86786fe9add48d8e-e65b0eb5da.css:3 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/fonts/lg.fonts/woff?22t19m`
+- assets/css/arameshdental.com/ds-bundle-css-86786fe9add48d8e-e65b0eb5da.css:3 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/fonts/lg.svg?22t19m#lg`
+- assets/css/arameshdental.com/ds-bundle-css-86786fe9add48d8e-e65b0eb5da.css:3 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/fonts/en/montserrat.woff2`
+- assets/css/arameshdental.com/ds-bundle-css-86786fe9add48d8e-e65b0eb5da.css:3 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/fonts/en/montserrat.woff`
+- assets/css/arameshdental.com/ds-bundle-css-86786fe9add48d8e-e65b0eb5da.css:3 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/fonts/en/montserrat.eot`
+- assets/css/arameshdental.com/ds-bundle-css-86786fe9add48d8e-e65b0eb5da.css:3 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/fonts/en/montserrat.svg`
+- assets/css/arameshdental.com/ds-bundle-css-86786fe9add48d8e-e65b0eb5da.css:3 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/fonts/en/Montserrat-Light.woff2`
+- assets/css/arameshdental.com/ds-bundle-css-86786fe9add48d8e-e65b0eb5da.css:3 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/fonts/en/Montserrat-Light.woff`
+- assets/css/arameshdental.com/ds-bundle-css-86786fe9add48d8e-e65b0eb5da.css:3 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/fonts/en/Montserrat-Light.eot`
+- assets/css/arameshdental.com/ds-bundle-css-86786fe9add48d8e-e65b0eb5da.css:3 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/images/bgteam.png`
+- assets/css/arameshdental.com/ds-bundle-css-86786fe9add48d8e-e65b0eb5da.css:3 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/images/404bg.png`
+- assets/css/arameshdental.com/ds-bundle-css-86786fe9add48d8e-e65b0eb5da.css:3 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/images/bgbg.svg`
+- assets/css/arameshdental.com/ds-bundle-css-86786fe9add48d8e-e65b0eb5da.css:3 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/images/bg-light.svg`
+- assets/css/arameshdental.com/ds-bundle-css-86786fe9add48d8e-e65b0eb5da.css:6 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/fonts/lg.woff2?io9a6k`
+- assets/css/arameshdental.com/ds-bundle-css-86786fe9add48d8e-e65b0eb5da.css:6 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/fonts/lg.ttf?io9a6k`
+- assets/css/arameshdental.com/ds-bundle-css-86786fe9add48d8e-e65b0eb5da.css:6 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/fonts/lg.woff?io9a6k`
+- assets/css/arameshdental.com/ds-bundle-css-86786fe9add48d8e-e65b0eb5da.css:6 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/fonts/lg.svg?io9a6k#lg`
+- assets/css/arameshdental.com/ds-bundle-css-86786fe9add48d8e-e65b0eb5da.css:6 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/images/loading.gif`
+- assets/css/arameshdental.com/ds-bundle-css-86786fe9add48d8e-e65b0eb5da.css:6 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/images/loading.gif`
+- assets/css/arameshdental.com/ds-bundle-css-86786fe9add48d8e-e65b0eb5da.css:11 · external URL · `https://swiperjs.com`
+- assets/css/arameshdental.com/ds-bundle-css-86786fe9add48d8e-e65b0eb5da.css:961 · external URL · `http://animista.net/license`
+- assets/css/arameshdental.com/ds-bundle-css-86786fe9add48d8e-e65b0eb5da.css:962 · external URL · `http://animista.net,`
+- assets/css/arameshdental.com/ds-bundle-css-a345d3fbea3fd57d-64e691db24.css:9 · external URL · `https://arameshdental.com/wp-content/plugins/gravityforms/images/theme/down-arrow.svg`
+- assets/css/arameshdental.com/ds-bundle-css-a345d3fbea3fd57d-64e691db24.css:9 · external URL · `https://arameshdental.com/wp-content/plugins/gravityforms/images/theme/down-arrow.svg`
+- assets/css/arameshdental.com/ds-bundle-css-a345d3fbea3fd57d-64e691db24.css:9 · external URL · `https://arameshdental.com/wp-content/plugins/gravityforms/images/theme/chosen/chosen-sprite.png`
+- assets/css/arameshdental.com/ds-bundle-css-a345d3fbea3fd57d-64e691db24.css:9 · external URL · `https://arameshdental.com/wp-content/plugins/gravityforms/images/theme/chosen/chosen-sprite.png`
+- assets/css/arameshdental.com/ds-bundle-css-a345d3fbea3fd57d-64e691db24.css:9 · external URL · `https://arameshdental.com/wp-content/plugins/gravityforms/images/theme/chosen/chosen-sprite.png`
+- assets/css/arameshdental.com/ds-bundle-css-a345d3fbea3fd57d-64e691db24.css:9 · external URL · `https://arameshdental.com/wp-content/plugins/gravityforms/images/theme/chosen/chosen-sprite.png`
+- assets/css/arameshdental.com/ds-bundle-css-a345d3fbea3fd57d-64e691db24.css:9 · external URL · `https://arameshdental.com/wp-content/plugins/gravityforms/images/theme/chosen/chosen-sprite@2x.png`
+- assets/css/arameshdental.com/ds-bundle-css-a345d3fbea3fd57d-64e691db24.css:9 · external URL · `https://arameshdental.com/wp-content/plugins/gravityforms/images/gf-creditcards.svg`
+- assets/css/arameshdental.com/ds-bundle-css-a345d3fbea3fd57d-64e691db24.css:9 · external URL · `https://arameshdental.com/wp-content/plugins/gravityforms/images/gf-creditcards-check.svg`
+- assets/css/arameshdental.com/ds-bundle-css-a345d3fbea3fd57d-64e691db24.css:9 · external URL · `https://arameshdental.com/wp-content/plugins/gravityforms/images/gf-creditcards.svg`
+- assets/css/arameshdental.com/ds-bundle-css-a345d3fbea3fd57d-64e691db24.css:15 · external URL · `https://arameshdental.com/wp-content/plugins/gravityforms/fonts/gform-icons-orbital.woff2?gxy8zs`
+- assets/css/arameshdental.com/ds-bundle-css-a345d3fbea3fd57d-64e691db24.css:15 · external URL · `https://arameshdental.com/wp-content/plugins/gravityforms/fonts/gform-icons-orbital.ttf?gxy8zs`
+- assets/css/arameshdental.com/ds-bundle-css-a345d3fbea3fd57d-64e691db24.css:15 · external URL · `https://arameshdental.com/wp-content/plugins/gravityforms/fonts/gform-icons-orbital.woff?gxy8zs`
+- assets/css/arameshdental.com/ds-bundle-css-a345d3fbea3fd57d-64e691db24.css:15 · external URL · `https://arameshdental.com/wp-content/plugins/gravityforms/fonts/gform-icons-orbital.svg?gxy8zs#gform-icons-orbital`
+- assets/css/arameshdental.com/style-rtl-1e37bacf74.css:3 · external URL · `https://payamava.net`
+- assets/css/arameshdental.com/style-rtl-1e37bacf74.css:5 · external URL · `https://payamava.net`
+- assets/css/arameshdental.com/style-rtl-1e37bacf74.css:18 · external URL · `https://underscores.me/,`
+- assets/css/arameshdental.com/style-rtl-1e37bacf74.css:22 · external URL · `https://necolas.github.io/normalize.css/`
+- mirror-manifest.json:3 · external URL · `https://arameshdental.com/`
+- mirror-manifest.json:9 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/style-rtl.min.css?ver=1.2.59`
+- mirror-manifest.json:15 · external URL · `https://arameshdental.com/wp-content/uploads/ds-asset-cache/ds-bundle-css-86786fe9add48d8e.css?ver=1789883175`
+- mirror-manifest.json:21 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/style-rtl.css?ver=1.2.59`
+- mirror-manifest.json:27 · external URL · `https://arameshdental.com/wp-content/uploads/ds-asset-cache/ds-bundle-css-a345d3fbea3fd57d.css?ver=1789883175`
+- mirror-manifest.json:33 · external URL · `https://arameshdental.com/wp-includes/js/jquery/jquery.min.js?ver=3.7.1`
+- mirror-manifest.json:39 · external URL · `https://arameshdental.com/wp-content/uploads/2025/09/logo.webp`
+- mirror-manifest.json:45 · external URL · `https://arameshdental.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=3.4.1`
+- mirror-manifest.json:51 · external URL · `https://arameshdental.com/wp-content/uploads/2025/09/ea787b3d2e584800516ee27c63953c8352c15f17-1-1200x600.webp`
+- mirror-manifest.json:81 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/images/icon-im.svg`
+- mirror-manifest.json:87 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/inc/my-fast-search/assets/images/background.png`
+- mirror-manifest.json:93 · external URL · `https://arameshdental.com/wp-content/uploads/2025/09/logo-95x48.webp`
+- mirror-manifest.json:99 · external URL · `https://arameshdental.com/wp-content/plugins/ds-cta-analytics/assets/tracker.js?ver=1.5.3`
+- mirror-manifest.json:105 · external URL · `https://arameshdental.com/wp-content/uploads/ds-asset-cache/ds-bundle-js-409edc9553bebdaf.js?ver=1789883535`
+- mirror-manifest.json:111 · external URL · `https://arameshdental.com/wp-includes/js/dist/dom-ready.min.js?ver=3fe927cab37bf38d6a23`
+- mirror-manifest.json:117 · external URL · `https://arameshdental.com/wp-includes/js/dist/hooks.min.js?ver=f0f188028580e8dc1255`
+- mirror-manifest.json:123 · external URL · `https://arameshdental.com/wp-includes/js/dist/i18n.min.js?ver=1dfe7db3940c23ea9216`
+- mirror-manifest.json:129 · external URL · `https://arameshdental.com/wp-content/uploads/2025/09/ea787b3d2e584800516ee27c63953c8352c15f17-1-390x327.webp`
+- mirror-manifest.json:135 · external URL · `https://arameshdental.com/wp-includes/js/dist/a11y.min.js?ver=31c6cec5a4ff7aff483d`
+- mirror-manifest.json:141 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/images/payamava_copy.svg`
+- mirror-manifest.json:147 · external URL · `https://arameshdental.com/wp-content/plugins/gravityforms/js/jquery.json.min.js?ver=2.9.2`
+- mirror-manifest.json:153 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/fonts/woff2/IRANSansXFaNum-Medium.woff2`
+- mirror-manifest.json:159 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/fonts/woff2/IRANSansXFaNum-Regular.woff2`
+- mirror-manifest.json:165 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/images/top.svg`
+- mirror-manifest.json:171 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/fonts/woff2/IRANSansXFaNum-Bold.woff2`
+- mirror-manifest.json:177 · external URL · `https://arameshdental.com/wp-content/plugins/gravityforms/js/gravityforms.min.js?ver=2.9.2`
+- mirror-manifest.json:183 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/images/back-fonr.svg`
+- mirror-manifest.json:189 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/images/forms-mask.svg`
+- mirror-manifest.json:195 · external URL · `https://arameshdental.com/wp-content/plugins/gravityforms/assets/js/dist/utils.min.js?ver=501a987060f4426fb517400c73c7fc1e`
+- mirror-manifest.json:201 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/fonts/en/Montserrat-Light.woff2`
+- mirror-manifest.json:207 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/fonts/woff2/IRANSansXFaNum-DemiBold.woff2`
+- mirror-manifest.json:213 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/fonts/woff2/IRANSansXFaNum-Light.woff2`
+- mirror-manifest.json:219 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/fonts/en/montserrat.woff2`
+- mirror-manifest.json:225 · external URL · `https://arameshdental.com/wp-content/uploads/2025/12/IMG_20251202_095142_874.webp`
+- mirror-manifest.json:231 · external URL · `https://arameshdental.com/wp-content/uploads/ds-asset-cache/ds-bundle-js-b881cae95eaea52d.js?ver=1789883175`
+- mirror-manifest.json:237 · external URL · `https://arameshdental.com/wp-content/uploads/2025/09/1-467x275.webp`
+- mirror-manifest.json:243 · external URL · `https://arameshdental.com/wp-content/uploads/2025/09/2-467x275.webp`
+- mirror-manifest.json:249 · external URL · `https://arameshdental.com/wp-content/uploads/2025/09/3-467x275.webp`
+- mirror-manifest.json:255 · external URL · `https://arameshdental.com/wp-content/uploads/2025/09/4-467x275.webp`
+- mirror-manifest.json:261 · external URL · `https://arameshdental.com/wp-content/uploads/2025/09/5-467x275.webp`
+- mirror-manifest.json:267 · external URL · `https://arameshdental.com/wp-content/uploads/2025/09/Frame-1171276458-467x275.webp`
+- mirror-manifest.json:273 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/images/bgbg.svg`
+- mirror-manifest.json:279 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/images/back-den.svg`
+- mirror-manifest.json:285 · external URL · `https://arameshdental.com/wp-content/themes/payamava-aramesh/assets/images/mask.svg`
+- mirror-manifest.json:291 · external URL · `https://arameshdental.com/wp-content/uploads/2026/07/Intro-1-mini.mp4`
+- mirror-manifest.json:297 · external URL · `https://arameshdental.com/wp-content/uploads/2025/09/cropped-logo-3-32x32.webp`
+- mirror-manifest.json:303 · external URL · `https://arameshdental.com/wp-content/uploads/2025/09/4dbc82f7e474b7cb5f2fb7cefc64f46ca9e7bd06-848x900.webp`
+- mirror-manifest.json:309 · external URL · `https://arameshdental.com/wp-content/uploads/2025/09/9d49b80a12041fe7a5bcf5e7a182fac94d61760e-848x900.webp`
+- mirror-manifest.json:315 · external URL · `https://arameshdental.com/wp-content/uploads/2025/09/4dbc82f7e474b7cb5f2fb7cefc64f46ca9e7bd06-424x450.webp`
+- mirror-manifest.json:321 · external URL · `https://arameshdental.com/wp-content/uploads/2025/09/9d49b80a12041fe7a5bcf5e7a182fac94d61760e-424x450.webp`
+- mirror-manifest.json:327 · external URL · `https://arameshdental.com/wp-content/uploads/2025/09/f9dfd1333995dcb6f985d5390ce5e58a59f894a8-424x450.webp`
+- mirror-manifest.json:333 · external URL · `https://arameshdental.com/wp-content/uploads/2025/09/bd7fc0f4f8ed5801bc621291235edd7e8f7857f2-424x450.webp`
+- mirror-manifest.json:339 · external URL · `https://arameshdental.com/wp-content/uploads/2025/09/a5d00bef6c89055edc7adea00e264ae820fa29e0-424x450.webp`
+- mirror-manifest.json:345 · external URL · `https://arameshdental.com/wp-content/uploads/2025/09/22-1-424x450.webp`
+- mirror-manifest.json:351 · external URL · `https://arameshdental.com/wp-content/uploads/2025/10/744b48d925ccab6ea667c8930c94af5072935128-128x128.webp`
+- mirror-manifest.json:357 · external URL · `https://arameshdental.com/wp-content/uploads/2025/10/c0ebf199bbed3b64ca5cc1ca4eed3dd80c8809fe-128x128.webp`
+- mirror-manifest.json:363 · external URL · `https://arameshdental.com/wp-content/uploads/2025/10/a32b9f9f7bbbcbb0087048707b90c607b29f32eb-128x128.webp`
+- mirror-manifest.json:369 · external URL · `https://arameshdental.com/wp-content/uploads/2025/10/288f3df11f9b597443747a4bcd037f454fe2275e-128x128.webp`
+- mirror-manifest.json:375 · external URL · `https://arameshdental.com/wp-content/uploads/2025/09/549a980c41a6c2cbdf0600a9c016d80aa5f8443d.webp`
+- mirror-manifest.json:381 · external URL · `https://arameshdental.com/wp-content/uploads/2025/10/f2553a05845c42729fb16c2d94323f5d365b94a4-700x360.webp`
+- mirror-manifest.json:387 · external URL · `https://arameshdental.com/wp-content/uploads/2025/11/p1-700x360.webp`
+- mirror-manifest.json:393 · external URL · `https://arameshdental.com/wp-content/uploads/2026/10/Removing-Gauze-After-Tooth-Extraction-886x460.webp`
+- mirror-manifest.json:399 · external URL · `https://arameshdental.com/wp-content/uploads/2026/10/Turmeric-for-Tooth-Infection-886x460.webp`
+- mirror-manifest.json:405 · external URL · `https://arameshdental.com/wp-content/uploads/2025/09/file_4-1-560x477.webp`
+- mirror-manifest.json:411 · external URL · `https://arameshdental.com/wp-content/uploads/2026/10/Turmeric-for-Tooth-Infection-443x230.webp`
+- mirror-manifest.json:417 · external URL · `https://arameshdental.com/wp-content/uploads/2026/10/Clove-for-Toothache-7-443x230.webp`
+- mirror-manifest.json:423 · external URL · `https://arameshdental.com/wp-content/uploads/2026/09/Causes-of-Teeth-Grinding-in-Children-During-Sleep-6-443x230.webp`
+- mirror-manifest.json:429 · external URL · `https://arameshdental.com/wp-content/uploads/2026/09/Impacted-Wisdom-Tooth-aramesh-11-443x230.webp`
+- mirror-manifest.json:435 · external URL · `https://arameshdental.com/wp-content/uploads/2026/09/What-Is-Dental-Scaling-aramesh-8-443x230.webp`
+- site/index-original.html:2 · external URL · `https://ogp.me/ns#`
+- site/index-original.html:8 · external URL · `https://gmpg.org/xfn/11`
+- site/index-original.html:11 · external URL · `https://rankmath.com/`
+- site/index-original.html:30 · external URL · `https://schema.org`
+- site/index-original.html:30 · external URL · `https://www.google.com/maps/search/?api=1&amp;query=35.76926121226652,`
+- site/index-original.html:30 · external URL · `https://www.instagram.com/\u0644\u06cc\u0646\u06a9-\u067e\u06cc\u062c-\u0627\u06cc\u0646\u0633\u062a\u0627\u06af\u0631\u0627\u0645`
+- site/index-original.html:30 · external URL · `https://t.me/\u0644\u06cc\u0646\u06a9-\u06a9\u0627\u0646\u0627\u0644-\u062a\u0644\u06af\u0631\u0627\u0645`
+- site/index-original.html:78 · external URL · `https://api.w.org/`
+- site/index-original.html:644 · external URL · `https://unblock.coffee/wp-content/themes/unblockcoffee/js/lightgallery/lg-video.umd.js`
+- site/index-original.html:1050 · external URL · `https://www.instagram.com/aramesh_impllantt?igsh=MWFueTYxcmY3bzVieA%3D%3D&utm_source=qr`
+- site/index-original.html:1221 · external URL · `https://t.me/+989125142254`
+- site/index-original.html:1223 · external URL · `https://www.instagram.com/aramesh_impllantt?igsh=MWFueTYxcmY3bzVieA%3D%3D&utm_source=qr`
+- site/index-original.html:1225 · external URL · `https://wa.me/+989125142254`
+- site/index-original.html:1410 · external URL · `https://s.w.org/images/core/emoji/17.0.2/72x72/`
+- site/index-original.html:1410 · external URL · `https://s.w.org/images/core/emoji/17.0.2/svg/`
+- site/index-original.html:1425 · external URL · `https://wa.me/+989125142254`
+- site/index.html:2 · external URL · `https://ogp.me/ns#`
+- site/index.html:10 · external URL · `https://gmpg.org/xfn/11`
+- site/index.html:13 · external URL · `https://rankmath.com/`
+- site/index.html:32 · external URL · `https://schema.org`
+- site/index.html:32 · external URL · `https://www.google.com/maps/search/?api=1&amp;query=35.76926121226652,`
+- site/index.html:32 · external URL · `https://www.instagram.com/\u0644\u06cc\u0646\u06a9-\u067e\u06cc\u062c-\u0627\u06cc\u0646\u0633\u062a\u0627\u06af\u0631\u0627\u0645`
+- site/index.html:32 · external URL · `https://t.me/\u0644\u06cc\u0646\u06a9-\u06a9\u0627\u0646\u0627\u0644-\u062a\u0644\u06af\u0631\u0627\u0645`
+- site/index.html:80 · external URL · `https://api.w.org/`
+- site/index.html:646 · external URL · `https://unblock.coffee/wp-content/themes/unblockcoffee/js/lightgallery/lg-video.umd.js`
+- site/index.html:1052 · external URL · `https://www.instagram.com/aramesh_impllantt?igsh=MWFueTYxcmY3bzVieA%3D%3D&utm_source=qr`
+- site/index.html:1223 · external URL · `https://t.me/+989125142254`
+- site/index.html:1225 · external URL · `https://www.instagram.com/aramesh_impllantt?igsh=MWFueTYxcmY3bzVieA%3D%3D&utm_source=qr`
+- site/index.html:1227 · external URL · `https://wa.me/+989125142254`
+- site/index.html:1412 · external URL · `https://s.w.org/images/core/emoji/17.0.2/72x72/`
+- site/index.html:1412 · external URL · `https://s.w.org/images/core/emoji/17.0.2/svg/`
+- site/index.html:1427 · external URL · `https://wa.me/+989125142254`
+- site/wp-content/themes/payamava-aramesh/style-rtl.css:3 · external URL · `https://payamava.net`
+- site/wp-content/themes/payamava-aramesh/style-rtl.css:5 · external URL · `https://payamava.net`
+- site/wp-content/themes/payamava-aramesh/style-rtl.css:18 · external URL · `https://underscores.me/,`
+- site/wp-content/themes/payamava-aramesh/style-rtl.css:22 · external URL · `https://necolas.github.io/normalize.css/`
+- site/wp-content/uploads/ds-asset-cache/ds-bundle-css-86786fe9add48d8e.css:11 · external URL · `https://swiperjs.com`
+- site/wp-content/uploads/ds-asset-cache/ds-bundle-css-86786fe9add48d8e.css:961 · external URL · `http://animista.net/license`
+- site/wp-content/uploads/ds-asset-cache/ds-bundle-css-86786fe9add48d8e.css:962 · external URL · `http://animista.net,`
+- site/wp-content/uploads/ds-asset-cache/ds-bundle-js-409edc9553bebdaf.js:5 · external URL · `http://www.lightgalleryjs.com/`
+- site/wp-content/uploads/ds-asset-cache/ds-bundle-js-409edc9553bebdaf.js:703 · external URL · `https://www.lightgalleryjs.com/demos/html-markup/`
+- site/wp-content/uploads/ds-asset-cache/ds-bundle-js-409edc9553bebdaf.js:2242 · external URL · `http://www.lightgalleryjs.com/`
+- site/wp-content/uploads/ds-asset-cache/ds-bundle-js-409edc9553bebdaf.js:2660 · external URL · `http://www.lightgalleryjs.com/`
+- site/wp-content/uploads/ds-asset-cache/ds-bundle-js-409edc9553bebdaf.js:2665 · external URL · `http://www.pinterest.com/pin/create/button/?url=`
+- site/wp-content/uploads/ds-asset-cache/ds-bundle-js-409edc9553bebdaf.js:2671 · external URL · `http://www.lightgalleryjs.com/`
+- site/wp-content/uploads/ds-asset-cache/ds-bundle-js-409edc9553bebdaf.js:3443 · external URL · `http://www.lightgalleryjs.com/`
+- site/wp-content/uploads/ds-asset-cache/ds-bundle-js-409edc9553bebdaf.js:3455 · external URL · `https://swiperjs.com`
+- site/wp-content/uploads/ds-asset-cache/ds-bundle-js-b881cae95eaea52d.js:52 · external URL · `https://github.com/zloirock/core-js/blob/v3.33.3/LICENSE`
+- site/wp-content/uploads/ds-asset-cache/ds-bundle-js-b881cae95eaea52d.js:52 · external URL · `https://github.com/zloirock/core-js`
+
+## 结论
+- 需要处理上面的残留项后再声明可部署。

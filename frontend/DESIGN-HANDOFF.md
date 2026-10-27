@@ -1,0 +1,497 @@
+# 6202552f-d928-4040-aa18-2740add8ebd9 implementation handoff
+
+This archive is the source of truth for turning the design into production code. Start from `index.html`, then preserve the visual system, responsive behavior, and interactions found in the exported files.
+
+## Implementation target
+- Build production UI from the exported design, not a loose reinterpretation.
+- Preserve typography scale, spacing rhythm, color tokens, border radii, shadows, motion timing, and component states.
+- Replace static placeholders only when the target app has real data or functional equivalents.
+- Keep generated product UI free of OpenDesign chrome, preview labels, or design-process annotations.
+- Treat this handoff as a visual contract: if implementation choices conflict, match the exported pixels and behavior first, then refactor internals.
+
+## Source map
+- Primary entry: `index.html`
+- HTML screens detected: 3
+- Stylesheets detected: 10
+- Script/component files detected: 7
+- Supporting assets detected: 394
+
+## Responsive contract
+Validate the implementation across this 2025–2026 viewport matrix:
+- Mobile compact: 360×800
+- Mobile standard: 390×844
+- Mobile large: 430×932
+- Foldable / small tablet: 600×960
+- Tablet portrait: 820×1180
+- Tablet landscape: 1024×768
+- Laptop: 1366×768
+- Desktop: 1440×900
+- Wide desktop: 1920×1080
+
+For responsive web exports, treat these as a modern breakpoint system for one adaptive web experience, not three fixed screenshots. Do not split responsive web into unrelated native app screens unless the project explicitly includes native targets. Use semantic layout thresholds, fluid `clamp()` type/spacing, and container queries where component width matters more than viewport width. Preserve any CSS media queries, container queries, fluid `clamp()` scales, and layout changes already present in the exported files.
+
+## Design fidelity contract
+- Extract reusable tokens before writing components: background, surface, foreground, muted text, border, accent, radius, shadow, spacing, type scale, and motion duration/easing.
+- Map product screens, in-app modules/components, optional landing page, and optional OS widget surfaces before coding. Keep these surfaces separate in the target architecture.
+- Match layout geometry: max-widths, gutters, grid columns, card proportions, sticky/fixed elements, and viewport-specific navigation.
+- Preserve real copy, labels, and data shown in the export. Do not replace specific text with generic marketing filler.
+- Preserve interactive affordances: hover, focus, pressed, disabled, loading, validation, copy/share, tab/accordion, modal/sheet, and keyboard states where present.
+- Preserve accessibility semantics when converting: headings stay hierarchical, controls remain buttons/links/inputs, focus states stay visible.
+- Do not keep prototype-only annotations, frame labels, or OpenDesign chrome in the production UI.
+
+## CJX-ready UX contract
+- Use `DESIGN-MANIFEST.json` as the machine-readable map for screens, app modules, OS widgets, landing pages, tokens, interactions, and viewport checks.
+- Screen-file-first: when multiple user-facing surfaces exist, implement each HTML screen as its own route/file. Treat `index.html` as a launcher/overview when the manifest marks it that way, not as a combined final UI.
+- If `landing.html`, app screens, platform screens, or OS widget files exist, preserve those boundaries in the target app instead of merging them into one page.
+- A single self-contained `index.html` is acceptable only when the export truly contains one user-facing screen and its CSS/JS are structured enough to extract tokens, components, states, and behavior.
+- If separate `css/` or `js/` files exist, treat them as source of truth for token/component/interactions before porting to React, Vue, SwiftUI, Compose, or another target stack.
+- In-app modules/components are product UI blocks inside the app. OS widgets are home-screen/lock-screen/quick-access surfaces outside the app. Do not merge those concepts.
+
+## Color and brand contract
+- Use the exported design tokens and product/domain context as the color source of truth.
+- Do not introduce warm beige / cream / peach / pink / orange-brown background washes unless they are already explicit brand/reference colors in the export.
+- A stylesheet or design/token file was detected; inspect it for canonical color variables before choosing framework theme tokens.
+
+## Implementation sequence for AI coding tools
+1. Open `index.html` and `DESIGN-MANIFEST.json`; identify every screen file, launcher/overview file, app module, and interaction before coding.
+2. If multiple HTML screens exist, map them to separate routes/surfaces first; do not merge `landing.html`, product app screens, platform screens, or OS widgets into one route.
+3. Extract a token table from CSS/root styles and inline styles before building framework components.
+4. Build product screens and domain-specific in-app modules from largest layout regions down to controls; avoid starting with isolated atoms that lose spatial intent.
+5. Port responsive behavior across the modern viewport matrix and test each semantic breakpoint before cleanup.
+6. Port interactions and states, then replace static placeholders only with real app data or functional equivalents.
+7. Keep optional landing page and OS widget surfaces as separate surfaces if present.
+8. Compare final screenshots against the export at 360×800, 390×844, 430×932, 820×1180, 1024×768, 1366×768, 1440×900, and 1920×1080 before declaring done.
+
+## Entry points
+- `index.html`
+- `site/index-original.html`
+- `site/index.html`
+
+## Styles
+- `assets/css/arameshdental.com/ds-bundle-css-86786fe9add48d8e-e65b0eb5da.css`
+- `assets/css/arameshdental.com/ds-bundle-css-a345d3fbea3fd57d-64e691db24.css`
+- `assets/css/arameshdental.com/style-rtl-1e37bacf74.css`
+- `assets/css/arameshdental.com/style-rtl.min-86e3bf49f7.css`
+- `assets/fonts/fonts.css`
+- `site/assets/fonts/fonts.css`
+- `site/wp-content/themes/payamava-aramesh/assets/style-rtl.min.css`
+- `site/wp-content/themes/payamava-aramesh/style-rtl.css`
+- `site/wp-content/uploads/ds-asset-cache/ds-bundle-css-86786fe9add48d8e.css`
+- `site/wp-content/uploads/ds-asset-cache/ds-bundle-css-a345d3fbea3fd57d.css`
+
+## Scripts/components
+- `site/wp-content/plugins/ds-cta-analytics/assets/tracker.js`
+- `site/wp-content/plugins/gravityforms/js/gravityforms.min.js`
+- `site/wp-content/plugins/gravityforms/js/jquery.json.min.js`
+- `site/wp-content/uploads/ds-asset-cache/ds-bundle-js-409edc9553bebdaf.js`
+- `site/wp-content/uploads/ds-asset-cache/ds-bundle-js-b881cae95eaea52d.js`
+- `site/wp-includes/js/jquery/jquery-migrate.min.js`
+- `site/wp-includes/js/jquery/jquery.min.js`
+
+## Assets and supporting files
+- `assets/fonts/arameshdental.com/gform-icons-orbital-4e159a3d35.woff2`
+- `assets/fonts/arameshdental.com/gform-icons-orbital-814b39c8d6.woff`
+- `assets/fonts/arameshdental.com/gform-icons-orbital-fd04e46de3.ttf`
+- `assets/fonts/arameshdental.com/IRANSansXFaNum-Black-0679ff2d36.woff`
+- `assets/fonts/arameshdental.com/IRANSansXFaNum-Black-7e07dd49a6.woff2`
+- `assets/fonts/arameshdental.com/IRANSansXFaNum-Bold-1df4126a80.woff`
+- `assets/fonts/arameshdental.com/IRANSansXFaNum-Bold-837923db7d.woff2`
+- `assets/fonts/arameshdental.com/IRANSansXFaNum-DemiBold-86ae95f44e.woff`
+- `assets/fonts/arameshdental.com/IRANSansXFaNum-DemiBold-f7a79c792a.woff2`
+- `assets/fonts/arameshdental.com/IRANSansXFaNum-Light-0e64ec5add.woff`
+- `assets/fonts/arameshdental.com/IRANSansXFaNum-Light-718d539838.woff2`
+- `assets/fonts/arameshdental.com/IRANSansXFaNum-Medium-42da69329a.woff`
+- `assets/fonts/arameshdental.com/IRANSansXFaNum-Medium-76521a4f00.woff2`
+- `assets/fonts/arameshdental.com/IRANSansXFaNum-Regular-cbbb203077.woff`
+- `assets/fonts/arameshdental.com/IRANSansXFaNum-Regular-f6a73f1631.woff2`
+- `assets/fonts/arameshdental.com/IRANSansXFaNum-Thin-73b6307ffc.woff`
+- `assets/fonts/arameshdental.com/IRANSansXFaNum-Thin-c7fc41f545.woff2`
+- `assets/fonts/arameshdental.com/IRANSansXFaNum-UltraLight-1c2f18a3ca.woff2`
+- `assets/fonts/arameshdental.com/IRANSansXFaNum-UltraLight-63a0eb9c6e.woff`
+- `assets/fonts/arameshdental.com/lg-2cbfab8132.woff2`
+- `assets/fonts/arameshdental.com/lg-5ebbfba1ed.ttf`
+- `assets/fonts/arameshdental.com/lg-e1e6aa0ef8.ttf`
+- `assets/fonts/arameshdental.com/lg-f5b8ad4592.woff`
+- `assets/fonts/arameshdental.com/montserrat-37891cbd38.woff`
+- `assets/fonts/arameshdental.com/montserrat-6a2a5666c6.woff2`
+- `assets/fonts/arameshdental.com/Montserrat-Light-494feac8c2.woff2`
+- `assets/fonts/arameshdental.com/Montserrat-Light-f4319aa8fa.woff`
+- `assets/images/arameshdental.com/1-088561a804.webp`
+- `assets/images/arameshdental.com/1-100x59-6dd7b4b319.webp`
+- `assets/images/arameshdental.com/1-190x112-d0b74cce46.webp`
+- `assets/images/arameshdental.com/1-200x118-45b36d51d0.webp`
+- `assets/images/arameshdental.com/1-300x177-685cc3077b.webp`
+- `assets/images/arameshdental.com/1-467x275-57f5f6bce0.webp`
+- `assets/images/arameshdental.com/1-500x295-35e4f62612.webp`
+- `assets/images/arameshdental.com/1-95x56-b901f72e86.webp`
+- `assets/images/arameshdental.com/2-100x59-b3525d4725.webp`
+- `assets/images/arameshdental.com/2-190x112-dc382a81b6.webp`
+- `assets/images/arameshdental.com/2-200x118-cb89aa1308.webp`
+- `assets/images/arameshdental.com/2-300x177-31b4a3f22c.webp`
+- `assets/images/arameshdental.com/2-467x275-0ba5eb0467.webp`
+- `assets/images/arameshdental.com/2-500x295-b2e0a0530d.webp`
+- `assets/images/arameshdental.com/2-95x56-39df1c1d48.webp`
+- `assets/images/arameshdental.com/2-aec5119dcc.webp`
+- `assets/images/arameshdental.com/22-1-424x450-d0247fbbbd.webp`
+- `assets/images/arameshdental.com/22-1-848x900-b7acc01713.webp`
+- `assets/images/arameshdental.com/288f3df11f9b597443747a4bcd037f454fe2275e-128x128-842b2540b5.webp`
+- `assets/images/arameshdental.com/288f3df11f9b597443747a4bcd037f454fe2275e-150x150-872318962c.webp`
+- `assets/images/arameshdental.com/288f3df11f9b597443747a4bcd037f454fe2275e-256x256-39c8e8401a.webp`
+- `assets/images/arameshdental.com/288f3df11f9b597443747a4bcd037f454fe2275e-300x300-4ea690c3d6.webp`
+- `assets/images/arameshdental.com/288f3df11f9b597443747a4bcd037f454fe2275e-400x400-6569046306.webp`
+- `assets/images/arameshdental.com/3-100x59-7b0aedee81.webp`
+- `assets/images/arameshdental.com/3-106655522a.webp`
+- `assets/images/arameshdental.com/3-190x112-65e143e6b2.webp`
+- `assets/images/arameshdental.com/3-200x118-2e7aaa80d2.webp`
+- `assets/images/arameshdental.com/3-300x177-e62c8042bc.webp`
+- `assets/images/arameshdental.com/3-467x275-3540421a5d.webp`
+- `assets/images/arameshdental.com/3-500x295-17e752dfbd.webp`
+- `assets/images/arameshdental.com/3-95x56-a4140e661b.webp`
+- `assets/images/arameshdental.com/4-100x59-9945a75767.webp`
+- `assets/images/arameshdental.com/4-190x112-cb321f64c3.webp`
+- `assets/images/arameshdental.com/4-200x118-730c24264e.webp`
+- `assets/images/arameshdental.com/4-300x177-e806f59fd7.webp`
+- `assets/images/arameshdental.com/4-42a1114cba.webp`
+- `assets/images/arameshdental.com/4-467x275-fac68461ac.webp`
+- `assets/images/arameshdental.com/4-500x295-af2e93eb32.webp`
+- `assets/images/arameshdental.com/4-95x56-ae1f25a498.webp`
+- `assets/images/arameshdental.com/4dbc82f7e474b7cb5f2fb7cefc64f46ca9e7bd06-424x450-0c898f86c0.webp`
+- `assets/images/arameshdental.com/4dbc82f7e474b7cb5f2fb7cefc64f46ca9e7bd06-848x900-907aa700d6.webp`
+- `assets/images/arameshdental.com/5-100x59-53eeece13e.webp`
+- `assets/images/arameshdental.com/5-190x112-cd1a47b59a.webp`
+- `assets/images/arameshdental.com/5-200x118-8fe7114c92.webp`
+- `assets/images/arameshdental.com/5-300x177-52592be829.webp`
+- `assets/images/arameshdental.com/5-467x275-f62eb3afb9.webp`
+- `assets/images/arameshdental.com/5-500x295-244356143e.webp`
+- `assets/images/arameshdental.com/5-57526f687b.webp`
+- `assets/images/arameshdental.com/5-95x56-77e1d1ca7a.webp`
+- `assets/images/arameshdental.com/549a980c41a6c2cbdf0600a9c016d80aa5f8443d-100x178-c0e807138c.webp`
+- `assets/images/arameshdental.com/549a980c41a6c2cbdf0600a9c016d80aa5f8443d-15a6f26b84.webp`
+- `assets/images/arameshdental.com/549a980c41a6c2cbdf0600a9c016d80aa5f8443d-168x300-6d1b3a4697.webp`
+- `assets/images/arameshdental.com/549a980c41a6c2cbdf0600a9c016d80aa5f8443d-190x339-dbe145a74c.webp`
+- `assets/images/arameshdental.com/549a980c41a6c2cbdf0600a9c016d80aa5f8443d-200x357-4489e5b342.webp`
+- `assets/images/arameshdental.com/549a980c41a6c2cbdf0600a9c016d80aa5f8443d-280x500-05bf7bcacb.webp`
+- `assets/images/arameshdental.com/549a980c41a6c2cbdf0600a9c016d80aa5f8443d-95x169-a666043547.webp`
+- `assets/images/arameshdental.com/744b48d925ccab6ea667c8930c94af5072935128-128x128-a756fe1701.webp`
+- `assets/images/arameshdental.com/744b48d925ccab6ea667c8930c94af5072935128-150x150-3248f69525.webp`
+- `assets/images/arameshdental.com/744b48d925ccab6ea667c8930c94af5072935128-256x256-b3d974cd37.webp`
+- `assets/images/arameshdental.com/744b48d925ccab6ea667c8930c94af5072935128-300x300-0b8d9e7621.webp`
+- `assets/images/arameshdental.com/744b48d925ccab6ea667c8930c94af5072935128-400x400-afe906dad4.webp`
+- `assets/images/arameshdental.com/744b48d925ccab6ea667c8930c94af5072935128-600x600-f90283cf1f.webp`
+- `assets/images/arameshdental.com/9d49b80a12041fe7a5bcf5e7a182fac94d61760e-424x450-2758ea71cc.webp`
+- `assets/images/arameshdental.com/9d49b80a12041fe7a5bcf5e7a182fac94d61760e-848x900-da8fbc9289.webp`
+- `assets/images/arameshdental.com/a32b9f9f7bbbcbb0087048707b90c607b29f32eb-128x128-dcbfd8b415.webp`
+- `assets/images/arameshdental.com/a32b9f9f7bbbcbb0087048707b90c607b29f32eb-150x150-00ad5abb90.webp`
+- `assets/images/arameshdental.com/a32b9f9f7bbbcbb0087048707b90c607b29f32eb-256x256-21b0c2979d.webp`
+- `assets/images/arameshdental.com/a32b9f9f7bbbcbb0087048707b90c607b29f32eb-300x300-887c9bdfa4.webp`
+- `assets/images/arameshdental.com/a32b9f9f7bbbcbb0087048707b90c607b29f32eb-400x400-75cb06668a.webp`
+- `assets/images/arameshdental.com/a5d00bef6c89055edc7adea00e264ae820fa29e0-424x450-6424aee56f.webp`
+- `assets/images/arameshdental.com/a5d00bef6c89055edc7adea00e264ae820fa29e0-848x900-011788bf29.webp`
+- `assets/images/arameshdental.com/back-den-74ae534724.svg`
+- `assets/images/arameshdental.com/back-fonr-813c51d989.svg`
+- `assets/images/arameshdental.com/background-f8af2c0e4f.png`
+- `assets/images/arameshdental.com/bd7fc0f4f8ed5801bc621291235edd7e8f7857f2-424x450-f55b707e5f.webp`
+- `assets/images/arameshdental.com/bd7fc0f4f8ed5801bc621291235edd7e8f7857f2-848x900-c78237b0f3.webp`
+- `assets/images/arameshdental.com/bgbg-337bbbc1e5.svg`
+- `assets/images/arameshdental.com/c0ebf199bbed3b64ca5cc1ca4eed3dd80c8809fe-128x128-bb47a055d4.webp`
+- `assets/images/arameshdental.com/c0ebf199bbed3b64ca5cc1ca4eed3dd80c8809fe-150x150-36249e6c9c.webp`
+- `assets/images/arameshdental.com/c0ebf199bbed3b64ca5cc1ca4eed3dd80c8809fe-256x256-3a51680eb0.webp`
+- `assets/images/arameshdental.com/c0ebf199bbed3b64ca5cc1ca4eed3dd80c8809fe-300x300-82eeeec7c8.webp`
+- `assets/images/arameshdental.com/c0ebf199bbed3b64ca5cc1ca4eed3dd80c8809fe-400x400-7351a989a9.webp`
+- `assets/images/arameshdental.com/c0ebf199bbed3b64ca5cc1ca4eed3dd80c8809fe-600x600-41a9399ff8.webp`
+- `assets/images/arameshdental.com/Causes-of-Teeth-Grinding-in-Children-During-Sleep-6-443x230-f3fc82b25a.webp`
+- `assets/images/arameshdental.com/Causes-of-Teeth-Grinding-in-Children-During-Sleep-6-886x460-371acef0f1.webp`
+- `assets/images/arameshdental.com/Clove-for-Toothache-7-443x230-54233fe5c8.webp`
+- `assets/images/arameshdental.com/Clove-for-Toothache-7-886x460-7a7546aa49.webp`
+- `assets/images/arameshdental.com/cropped-logo-3-32x32-74195249b2.webp`
+- `assets/images/arameshdental.com/ea787b3d2e584800516ee27c63953c8352c15f17-1-1200x600-24c770e9ae.webp`
+- `assets/images/arameshdental.com/ea787b3d2e584800516ee27c63953c8352c15f17-1-390x327-39e6c97b31.webp`
+- `assets/images/arameshdental.com/f2553a05845c42729fb16c2d94323f5d365b94a4-1400x720-0e3dd3df97.webp`
+- `assets/images/arameshdental.com/f2553a05845c42729fb16c2d94323f5d365b94a4-700x360-56b3b99eb7.webp`
+- `assets/images/arameshdental.com/f9dfd1333995dcb6f985d5390ce5e58a59f894a8-424x450-ea2492ce1f.webp`
+- `assets/images/arameshdental.com/f9dfd1333995dcb6f985d5390ce5e58a59f894a8-848x900-f29bf625d9.webp`
+- `assets/images/arameshdental.com/file_4-1-100x85-c2811932e4.webp`
+- `assets/images/arameshdental.com/file_4-1-190x162-92be566222.webp`
+- `assets/images/arameshdental.com/file_4-1-200x170-7932e66d29.webp`
+- `assets/images/arameshdental.com/file_4-1-300x255-5a84529e79.webp`
+- `assets/images/arameshdental.com/file_4-1-500x426-294611636a.webp`
+- `assets/images/arameshdental.com/file_4-1-560x477-e665ee5bf3.webp`
+- `assets/images/arameshdental.com/file_4-1-95x81-fee2374f91.webp`
+- `assets/images/arameshdental.com/file_4-1-e8ce18f619.webp`
+- `assets/images/arameshdental.com/forms-mask-2027036be6.svg`
+- `assets/images/arameshdental.com/Frame-1171276458-100x59-714f78c878.webp`
+- `assets/images/arameshdental.com/Frame-1171276458-190x112-a3893c17dc.webp`
+- `assets/images/arameshdental.com/Frame-1171276458-1bfff1bfa8.webp`
+- `assets/images/arameshdental.com/Frame-1171276458-200x118-2fb7964726.webp`
+- `assets/images/arameshdental.com/Frame-1171276458-300x177-3f2152d6d7.webp`
+- `assets/images/arameshdental.com/Frame-1171276458-467x275-65f730fb96.webp`
+- `assets/images/arameshdental.com/Frame-1171276458-500x295-84d14e9f1b.webp`
+- `assets/images/arameshdental.com/Frame-1171276458-95x56-08a904c42d.webp`
+- `assets/images/arameshdental.com/icon-im-10f245eb6e.svg`
+- `assets/images/arameshdental.com/IMG_20251202_095142_874-881427a3af.webp`
+- `assets/images/arameshdental.com/Impacted-Wisdom-Tooth-aramesh-11-443x230-a6a716dfeb.webp`
+- `assets/images/arameshdental.com/Impacted-Wisdom-Tooth-aramesh-11-886x460-8cc344a269.webp`
+- `assets/images/arameshdental.com/logo-100x51-115ea4f4c6.webp`
+- `assets/images/arameshdental.com/logo-190x96-5caf81a50b.webp`
+- `assets/images/arameshdental.com/logo-200x101-377e70eebd.webp`
+- `assets/images/arameshdental.com/logo-300x152-b90c519555.webp`
+- `assets/images/arameshdental.com/logo-443x230-560af09a73.webp`
+- `assets/images/arameshdental.com/logo-500x253-93c59c3a46.webp`
+- `assets/images/arameshdental.com/logo-86b28c9ca0.webp`
+- `assets/images/arameshdental.com/logo-95x48-00e450c30b.webp`
+- `assets/images/arameshdental.com/mask-2bea560b22.svg`
+- `assets/images/arameshdental.com/p1-700x360-0e9f80465b.webp`
+- `assets/images/arameshdental.com/payamava_copy-ff36437424.svg`
+- `assets/images/arameshdental.com/Removing-Gauze-After-Tooth-Extraction-443x230-939c510dfa.webp`
+- `assets/images/arameshdental.com/Removing-Gauze-After-Tooth-Extraction-886x460-173a217221.webp`
+- `assets/images/arameshdental.com/top-2952b9c642.svg`
+- `assets/images/arameshdental.com/Turmeric-for-Tooth-Infection-443x230-0fe96fec91.webp`
+- `assets/images/arameshdental.com/Turmeric-for-Tooth-Infection-886x460-4b5176771d.webp`
+- `assets/images/arameshdental.com/What-Is-Dental-Scaling-aramesh-8-443x230-5db6fe5c72.webp`
+- `assets/images/arameshdental.com/What-Is-Dental-Scaling-aramesh-8-886x460-1242bf89dc.webp`
+- `assets/images/svg-3E-8d1e0ed55d.bin`
+- `assets/images/svg-3E-bedc26b2ab.bin`
+- `assets/images/svg-3E-c41ae756c1.bin`
+- `assets/images/svg-3E-c8e7c09202.bin`
+- `CLONE_AUDIT.md`
+- `CLONE_REPORT.md`
+- `mirror-manifest.json`
+- `NOTES.md`
+- `own-asset-urls.txt`
+- `RECON/asset-manifest.json`
+- `RECON/clone-recon.json`
+- `RECON/clone-summary.md`
+- `RECON/original-recon.json`
+- `RECON/original-summary.md`
+- `RECON/routes/original-route-map.json`
+- `RECON/routes/original-route-map.md`
+- `RECON/routes/screenshots/arameshdental.com-93d89c25.png`
+- `RECON/routes/screenshots/arameshdental.com-blog-a1719312.png`
+- `RECON/routes/screenshots/arameshdental.com-contact-d5f2d710.png`
+- `RECON/routes/screenshots/arameshdental.com-d8-a7-db-8c-d9-85-d9-be-d9-84-d9-86-d8-aa--d8-af-d9-86-d8-af-d8-a7-d9-86-d514eeeb.png`
+- `RECON/routes/screenshots/arameshdental.com-d8-a8-d8-b1-d8-af-d8-a7-d8-b4-d8-aa-d9-86--da-af-d8-a7-d8-b2--d8-a7-d8-b-b62ec4c5.png`
+- `RECON/routes/screenshots/arameshdental.com-d8-af-d8-b1-d8-a8-d8-a7-d8-b1-d9-87--d9-85-d8-a7-e69baccb.png`
+- `RECON/routes/screenshots/arameshdental.com-d8-b2-d8-b1-d8-af-da-86-d9-88-d8-a8-d9-87--d8-a8-d8-b1-d8-a7-db-8c--d8-b-2c3fe366.png`
+- `RECON/routes/screenshots/arameshdental.com-d9-85-db-8c-d8-ae-da-a9--d8-a8-d8-b1-d8-a7-db-8c--d8-af-d9-86-d8-af-d8-a-6453974f.png`
+- `RECON/routes/screenshots/arameshdental.com-implant-price-74102310.png`
+- `RECON/routes/screenshots/arameshdental.com-wp-content-uploads-2025-09-1.webp-088561a8.png`
+- `RECON/routes/screenshots/arameshdental.com-wp-content-uploads-2025-09-2.webp-aec5119d.png`
+- `RECON/routes/screenshots/arameshdental.com-wp-content-uploads-2025-09-3.webp-10665552.png`
+- `RECON/routes/screenshots/arameshdental.com-wp-content-uploads-2025-09-4.webp-42a1114c.png`
+- `RECON/routes/screenshots/arameshdental.com-wp-content-uploads-2025-09-5.webp-57526f68.png`
+- `RECON/routes/screenshots/arameshdental.com-wp-content-uploads-2025-09-Frame-1171276458.webp-1bfff1bf.png`
+- `RECON/screenshots/clone-1440.png`
+- `RECON/screenshots/clone-390.png`
+- `RECON/screenshots/clone-768.png`
+- `RECON/screenshots/original-1440.png`
+- `RECON/screenshots/original-390.png`
+- `RECON/screenshots/original-768.png`
+- `RECON/screenshots/visual-diff-1440.png`
+- `RECON/visual-diff-1440.json`
+- `site/assets/fonts/arameshdental.com/gform-icons-orbital-4e159a3d35.woff2`
+- `site/assets/fonts/arameshdental.com/gform-icons-orbital-814b39c8d6.woff`
+- `site/assets/fonts/arameshdental.com/gform-icons-orbital-fd04e46de3.ttf`
+- `site/assets/fonts/arameshdental.com/IRANSansXFaNum-Black-0679ff2d36.woff`
+- `site/assets/fonts/arameshdental.com/IRANSansXFaNum-Black-7e07dd49a6.woff2`
+- `site/assets/fonts/arameshdental.com/IRANSansXFaNum-Bold-1df4126a80.woff`
+- `site/assets/fonts/arameshdental.com/IRANSansXFaNum-Bold-837923db7d.woff2`
+- `site/assets/fonts/arameshdental.com/IRANSansXFaNum-DemiBold-86ae95f44e.woff`
+- `site/assets/fonts/arameshdental.com/IRANSansXFaNum-DemiBold-f7a79c792a.woff2`
+- `site/assets/fonts/arameshdental.com/IRANSansXFaNum-Light-0e64ec5add.woff`
+- `site/assets/fonts/arameshdental.com/IRANSansXFaNum-Light-718d539838.woff2`
+- `site/assets/fonts/arameshdental.com/IRANSansXFaNum-Medium-42da69329a.woff`
+- `site/assets/fonts/arameshdental.com/IRANSansXFaNum-Medium-76521a4f00.woff2`
+- `site/assets/fonts/arameshdental.com/IRANSansXFaNum-Regular-cbbb203077.woff`
+- `site/assets/fonts/arameshdental.com/IRANSansXFaNum-Regular-f6a73f1631.woff2`
+- `site/assets/fonts/arameshdental.com/IRANSansXFaNum-Thin-73b6307ffc.woff`
+- `site/assets/fonts/arameshdental.com/IRANSansXFaNum-Thin-c7fc41f545.woff2`
+- `site/assets/fonts/arameshdental.com/IRANSansXFaNum-UltraLight-1c2f18a3ca.woff2`
+- `site/assets/fonts/arameshdental.com/IRANSansXFaNum-UltraLight-63a0eb9c6e.woff`
+- `site/assets/fonts/arameshdental.com/lg-2cbfab8132.woff2`
+- `site/assets/fonts/arameshdental.com/lg-5ebbfba1ed.ttf`
+- `site/assets/fonts/arameshdental.com/lg-e1e6aa0ef8.ttf`
+- `site/assets/fonts/arameshdental.com/lg-f5b8ad4592.woff`
+- `site/assets/fonts/arameshdental.com/montserrat-37891cbd38.woff`
+- `site/assets/fonts/arameshdental.com/montserrat-6a2a5666c6.woff2`
+- `site/assets/fonts/arameshdental.com/Montserrat-Light-494feac8c2.woff2`
+- `site/assets/fonts/arameshdental.com/Montserrat-Light-f4319aa8fa.woff`
+- `site/wp-content/plugins/gravityforms/images/spinner.svg`
+- `site/wp-content/themes/payamava-aramesh/assets/fonts/en/Montserrat-Light.woff`
+- `site/wp-content/themes/payamava-aramesh/assets/fonts/en/Montserrat-Light.woff2`
+- `site/wp-content/themes/payamava-aramesh/assets/fonts/en/montserrat.woff`
+- `site/wp-content/themes/payamava-aramesh/assets/fonts/en/montserrat.woff2`
+- `site/wp-content/themes/payamava-aramesh/assets/fonts/woff/IRANSansXFaNum-Black.woff`
+- `site/wp-content/themes/payamava-aramesh/assets/fonts/woff/IRANSansXFaNum-Bold.woff`
+- `site/wp-content/themes/payamava-aramesh/assets/fonts/woff/IRANSansXFaNum-DemiBold.woff`
+- `site/wp-content/themes/payamava-aramesh/assets/fonts/woff/IRANSansXFaNum-Extrabold.woff`
+- `site/wp-content/themes/payamava-aramesh/assets/fonts/woff/IRANSansXFaNum-Light.woff`
+- `site/wp-content/themes/payamava-aramesh/assets/fonts/woff/IRANSansXFaNum-Medium.woff`
+- `site/wp-content/themes/payamava-aramesh/assets/fonts/woff/IRANSansXFaNum-Regular.woff`
+- `site/wp-content/themes/payamava-aramesh/assets/fonts/woff/IRANSansXFaNum-Thin.woff`
+- `site/wp-content/themes/payamava-aramesh/assets/fonts/woff/IRANSansXFaNum-UltraLight.woff`
+- `site/wp-content/themes/payamava-aramesh/assets/fonts/woff2/IRANSansXFaNum-Black.woff2`
+- `site/wp-content/themes/payamava-aramesh/assets/fonts/woff2/IRANSansXFaNum-Bold.woff2`
+- `site/wp-content/themes/payamava-aramesh/assets/fonts/woff2/IRANSansXFaNum-DemiBold.woff2`
+- `site/wp-content/themes/payamava-aramesh/assets/fonts/woff2/IRANSansXFaNum-Extrabold.woff2`
+- `site/wp-content/themes/payamava-aramesh/assets/fonts/woff2/IRANSansXFaNum-Light.woff2`
+- `site/wp-content/themes/payamava-aramesh/assets/fonts/woff2/IRANSansXFaNum-Medium.woff2`
+- `site/wp-content/themes/payamava-aramesh/assets/fonts/woff2/IRANSansXFaNum-Regular.woff2`
+- `site/wp-content/themes/payamava-aramesh/assets/fonts/woff2/IRANSansXFaNum-Thin.woff2`
+- `site/wp-content/themes/payamava-aramesh/assets/fonts/woff2/IRANSansXFaNum-UltraLight.woff2`
+- `site/wp-content/themes/payamava-aramesh/assets/images/back-den.svg`
+- `site/wp-content/themes/payamava-aramesh/assets/images/back-fonr.svg`
+- `site/wp-content/themes/payamava-aramesh/assets/images/bgbg.svg`
+- `site/wp-content/themes/payamava-aramesh/assets/images/forms-mask.svg`
+- `site/wp-content/themes/payamava-aramesh/assets/images/icon-im.svg`
+- `site/wp-content/themes/payamava-aramesh/assets/images/mask.svg`
+- `site/wp-content/themes/payamava-aramesh/assets/images/payamava_copy.svg`
+- `site/wp-content/themes/payamava-aramesh/assets/images/top.svg`
+- `site/wp-content/themes/payamava-aramesh/inc/my-fast-search/assets/images/background.png`
+- `site/wp-content/themes/payamava-aramesh/inc/my-fast-search/files/out.json`
+- `site/wp-content/uploads/2025/09/1-100x59.webp`
+- `site/wp-content/uploads/2025/09/1-190x112.webp`
+- `site/wp-content/uploads/2025/09/1-200x118.webp`
+- `site/wp-content/uploads/2025/09/1-300x177.webp`
+- `site/wp-content/uploads/2025/09/1-467x275.webp`
+- `site/wp-content/uploads/2025/09/1-500x295.webp`
+- `site/wp-content/uploads/2025/09/1-95x56.webp`
+- `site/wp-content/uploads/2025/09/1.webp`
+- `site/wp-content/uploads/2025/09/2-100x59.webp`
+- `site/wp-content/uploads/2025/09/2-190x112.webp`
+- `site/wp-content/uploads/2025/09/2-200x118.webp`
+- `site/wp-content/uploads/2025/09/2-300x177.webp`
+- `site/wp-content/uploads/2025/09/2-467x275.webp`
+- `site/wp-content/uploads/2025/09/2-500x295.webp`
+- `site/wp-content/uploads/2025/09/2-95x56.webp`
+- `site/wp-content/uploads/2025/09/2.webp`
+- `site/wp-content/uploads/2025/09/22-1-424x450.webp`
+- `site/wp-content/uploads/2025/09/22-1-848x900.webp`
+- `site/wp-content/uploads/2025/09/3-100x59.webp`
+- `site/wp-content/uploads/2025/09/3-190x112.webp`
+- `site/wp-content/uploads/2025/09/3-200x118.webp`
+- `site/wp-content/uploads/2025/09/3-300x177.webp`
+- `site/wp-content/uploads/2025/09/3-467x275.webp`
+- `site/wp-content/uploads/2025/09/3-500x295.webp`
+- `site/wp-content/uploads/2025/09/3-95x56.webp`
+- `site/wp-content/uploads/2025/09/3.webp`
+- `site/wp-content/uploads/2025/09/4-100x59.webp`
+- `site/wp-content/uploads/2025/09/4-190x112.webp`
+- `site/wp-content/uploads/2025/09/4-200x118.webp`
+- `site/wp-content/uploads/2025/09/4-300x177.webp`
+- `site/wp-content/uploads/2025/09/4-467x275.webp`
+- `site/wp-content/uploads/2025/09/4-500x295.webp`
+- `site/wp-content/uploads/2025/09/4-95x56.webp`
+- `site/wp-content/uploads/2025/09/4.webp`
+- `site/wp-content/uploads/2025/09/4dbc82f7e474b7cb5f2fb7cefc64f46ca9e7bd06-424x450.webp`
+- `site/wp-content/uploads/2025/09/4dbc82f7e474b7cb5f2fb7cefc64f46ca9e7bd06-848x900.webp`
+- `site/wp-content/uploads/2025/09/5-100x59.webp`
+- `site/wp-content/uploads/2025/09/5-190x112.webp`
+- `site/wp-content/uploads/2025/09/5-200x118.webp`
+- `site/wp-content/uploads/2025/09/5-300x177.webp`
+- `site/wp-content/uploads/2025/09/5-467x275.webp`
+- `site/wp-content/uploads/2025/09/5-500x295.webp`
+- `site/wp-content/uploads/2025/09/5-95x56.webp`
+- `site/wp-content/uploads/2025/09/5.webp`
+- `site/wp-content/uploads/2025/09/549a980c41a6c2cbdf0600a9c016d80aa5f8443d-100x178.webp`
+- `site/wp-content/uploads/2025/09/549a980c41a6c2cbdf0600a9c016d80aa5f8443d-168x300.webp`
+- `site/wp-content/uploads/2025/09/549a980c41a6c2cbdf0600a9c016d80aa5f8443d-190x339.webp`
+- `site/wp-content/uploads/2025/09/549a980c41a6c2cbdf0600a9c016d80aa5f8443d-200x357.webp`
+- `site/wp-content/uploads/2025/09/549a980c41a6c2cbdf0600a9c016d80aa5f8443d-280x500.webp`
+- `site/wp-content/uploads/2025/09/549a980c41a6c2cbdf0600a9c016d80aa5f8443d-95x169.webp`
+- `site/wp-content/uploads/2025/09/549a980c41a6c2cbdf0600a9c016d80aa5f8443d.webp`
+- `site/wp-content/uploads/2025/09/9d49b80a12041fe7a5bcf5e7a182fac94d61760e-424x450.webp`
+- `site/wp-content/uploads/2025/09/9d49b80a12041fe7a5bcf5e7a182fac94d61760e-848x900.webp`
+- `site/wp-content/uploads/2025/09/a5d00bef6c89055edc7adea00e264ae820fa29e0-424x450.webp`
+- `site/wp-content/uploads/2025/09/a5d00bef6c89055edc7adea00e264ae820fa29e0-848x900.webp`
+- `site/wp-content/uploads/2025/09/bd7fc0f4f8ed5801bc621291235edd7e8f7857f2-424x450.webp`
+- `site/wp-content/uploads/2025/09/bd7fc0f4f8ed5801bc621291235edd7e8f7857f2-848x900.webp`
+- `site/wp-content/uploads/2025/09/cropped-logo-3-180x180.webp`
+- `site/wp-content/uploads/2025/09/cropped-logo-3-192x192.webp`
+- `site/wp-content/uploads/2025/09/cropped-logo-3-270x270.webp`
+- `site/wp-content/uploads/2025/09/cropped-logo-3-32x32.webp`
+- `site/wp-content/uploads/2025/09/ea787b3d2e584800516ee27c63953c8352c15f17-1-1200x600.webp`
+- `site/wp-content/uploads/2025/09/ea787b3d2e584800516ee27c63953c8352c15f17-1-390x327.webp`
+- `site/wp-content/uploads/2025/09/f9dfd1333995dcb6f985d5390ce5e58a59f894a8-424x450.webp`
+- `site/wp-content/uploads/2025/09/f9dfd1333995dcb6f985d5390ce5e58a59f894a8-848x900.webp`
+- `site/wp-content/uploads/2025/09/file_4-1-100x85.webp`
+- `site/wp-content/uploads/2025/09/file_4-1-190x162.webp`
+- `site/wp-content/uploads/2025/09/file_4-1-200x170.webp`
+- `site/wp-content/uploads/2025/09/file_4-1-300x255.webp`
+- `site/wp-content/uploads/2025/09/file_4-1-500x426.webp`
+- `site/wp-content/uploads/2025/09/file_4-1-560x477.webp`
+- `site/wp-content/uploads/2025/09/file_4-1-95x81.webp`
+- `site/wp-content/uploads/2025/09/file_4-1.webp`
+- `site/wp-content/uploads/2025/09/Frame-1171276458-100x59.webp`
+- `site/wp-content/uploads/2025/09/Frame-1171276458-190x112.webp`
+- `site/wp-content/uploads/2025/09/Frame-1171276458-200x118.webp`
+- `site/wp-content/uploads/2025/09/Frame-1171276458-300x177.webp`
+- `site/wp-content/uploads/2025/09/Frame-1171276458-467x275.webp`
+- `site/wp-content/uploads/2025/09/Frame-1171276458-500x295.webp`
+- `site/wp-content/uploads/2025/09/Frame-1171276458-95x56.webp`
+- `site/wp-content/uploads/2025/09/Frame-1171276458.webp`
+- `site/wp-content/uploads/2025/09/logo-100x51.webp`
+- `site/wp-content/uploads/2025/09/logo-190x96.webp`
+- `site/wp-content/uploads/2025/09/logo-200x101.webp`
+- `site/wp-content/uploads/2025/09/logo-300x152.webp`
+- `site/wp-content/uploads/2025/09/logo-443x230.webp`
+- `site/wp-content/uploads/2025/09/logo-500x253.webp`
+- `site/wp-content/uploads/2025/09/logo-95x48.webp`
+- `site/wp-content/uploads/2025/09/logo.webp`
+- `site/wp-content/uploads/2025/10/17-1.mp4`
+- `site/wp-content/uploads/2025/10/18-1.mp4`
+- `site/wp-content/uploads/2025/10/19-1.mp4`
+- `site/wp-content/uploads/2025/10/20-1.mp4`
+- `site/wp-content/uploads/2025/10/21-1.mp4`
+- `site/wp-content/uploads/2025/10/22-1-3.mp4`
+- `site/wp-content/uploads/2025/10/288f3df11f9b597443747a4bcd037f454fe2275e-128x128.webp`
+- `site/wp-content/uploads/2025/10/288f3df11f9b597443747a4bcd037f454fe2275e-150x150.webp`
+- `site/wp-content/uploads/2025/10/288f3df11f9b597443747a4bcd037f454fe2275e-256x256.webp`
+- `site/wp-content/uploads/2025/10/288f3df11f9b597443747a4bcd037f454fe2275e-300x300.webp`
+- `site/wp-content/uploads/2025/10/288f3df11f9b597443747a4bcd037f454fe2275e-400x400.webp`
+- `site/wp-content/uploads/2025/10/744b48d925ccab6ea667c8930c94af5072935128-128x128.webp`
+- `site/wp-content/uploads/2025/10/744b48d925ccab6ea667c8930c94af5072935128-150x150.webp`
+- `site/wp-content/uploads/2025/10/744b48d925ccab6ea667c8930c94af5072935128-256x256.webp`
+- `site/wp-content/uploads/2025/10/744b48d925ccab6ea667c8930c94af5072935128-300x300.webp`
+- `site/wp-content/uploads/2025/10/744b48d925ccab6ea667c8930c94af5072935128-400x400.webp`
+- `site/wp-content/uploads/2025/10/744b48d925ccab6ea667c8930c94af5072935128-600x600.webp`
+- `site/wp-content/uploads/2025/10/a32b9f9f7bbbcbb0087048707b90c607b29f32eb-128x128.webp`
+- `site/wp-content/uploads/2025/10/a32b9f9f7bbbcbb0087048707b90c607b29f32eb-150x150.webp`
+- `site/wp-content/uploads/2025/10/a32b9f9f7bbbcbb0087048707b90c607b29f32eb-256x256.webp`
+- `site/wp-content/uploads/2025/10/a32b9f9f7bbbcbb0087048707b90c607b29f32eb-300x300.webp`
+- `site/wp-content/uploads/2025/10/a32b9f9f7bbbcbb0087048707b90c607b29f32eb-400x400.webp`
+- `site/wp-content/uploads/2025/10/c0ebf199bbed3b64ca5cc1ca4eed3dd80c8809fe-128x128.webp`
+- `site/wp-content/uploads/2025/10/c0ebf199bbed3b64ca5cc1ca4eed3dd80c8809fe-150x150.webp`
+- `site/wp-content/uploads/2025/10/c0ebf199bbed3b64ca5cc1ca4eed3dd80c8809fe-256x256.webp`
+- `site/wp-content/uploads/2025/10/c0ebf199bbed3b64ca5cc1ca4eed3dd80c8809fe-300x300.webp`
+- `site/wp-content/uploads/2025/10/c0ebf199bbed3b64ca5cc1ca4eed3dd80c8809fe-400x400.webp`
+- `site/wp-content/uploads/2025/10/c0ebf199bbed3b64ca5cc1ca4eed3dd80c8809fe-600x600.webp`
+- `site/wp-content/uploads/2025/10/f2553a05845c42729fb16c2d94323f5d365b94a4-1400x720.webp`
+- `site/wp-content/uploads/2025/10/f2553a05845c42729fb16c2d94323f5d365b94a4-700x360.webp`
+- `site/wp-content/uploads/2025/11/p1-700x360.webp`
+- `site/wp-content/uploads/2025/12/IMG_20251202_095142_874.webp`
+- `site/wp-content/uploads/2026/07/Intro-1-mini.mp4`
+- `site/wp-content/uploads/2026/09/Causes-of-Teeth-Grinding-in-Children-During-Sleep-6-443x230.webp`
+- `site/wp-content/uploads/2026/09/Causes-of-Teeth-Grinding-in-Children-During-Sleep-6-886x460.webp`
+- `site/wp-content/uploads/2026/09/Impacted-Wisdom-Tooth-aramesh-11-443x230.webp`
+- `site/wp-content/uploads/2026/09/Impacted-Wisdom-Tooth-aramesh-11-886x460.webp`
+- `site/wp-content/uploads/2026/09/What-Is-Dental-Scaling-aramesh-8-443x230.webp`
+- `site/wp-content/uploads/2026/09/What-Is-Dental-Scaling-aramesh-8-886x460.webp`
+- `site/wp-content/uploads/2026/10/Clove-for-Toothache-7-443x230.webp`
+- `site/wp-content/uploads/2026/10/Clove-for-Toothache-7-886x460.webp`
+- `site/wp-content/uploads/2026/10/Removing-Gauze-After-Tooth-Extraction-443x230.webp`
+- `site/wp-content/uploads/2026/10/Removing-Gauze-After-Tooth-Extraction-886x460.webp`
+- `site/wp-content/uploads/2026/10/Turmeric-for-Tooth-Infection-443x230.webp`
+- `site/wp-content/uploads/2026/10/Turmeric-for-Tooth-Infection-886x460.webp`
+- `third-party.json`
+
+## Coding checklist for AI tools
+1. Inspect `index.html` and `DESIGN-MANIFEST.json` first and identify reusable components before coding.
+2. Implement each user-facing screen file as its own route/surface; keep launcher, landing, app, platform, and OS widget files separate.
+3. Extract design tokens into the target stack: colors, type scale, spacing, radius, shadows, and motion.
+4. Implement layout with real 2025–2026 responsive breakpoints, fluid type/spacing, and container-query-aware component behavior; test with no horizontal overflow.
+5. Preserve interactive controls, hover/focus/pressed states, form behavior, validation, and copy actions where present.
+6. Implement domain-specific in-app modules with real states; do not flatten them into generic cards.
+7. Keep landing page, product screens, and OS widget/quick-access surfaces separate when present.
+8. Confirm the production result visually matches the exported design before refactoring internals.
+9. Reject implementation shortcuts that flatten the design into generic cards, generic gradients, placeholder stats, or framework-default typography.
+10. If a detail is ambiguous, keep the exported HTML/CSS/JS behavior rather than inventing a new pattern.

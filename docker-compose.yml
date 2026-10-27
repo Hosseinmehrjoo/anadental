@@ -1,0 +1,94 @@
+services:
+  db:
+    image: mysql:8.0.40
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${DB_NAME:-ana_dental}
+      MYSQL_USER: ${DB_USER:-ana_dental}
+      MYSQL_PASSWORD: ${DB_PASS:?Set DB_PASS in .env}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD:?Set DB_ROOT_PASSWORD in .env}
+    volumes:
+      - db_data:/var/lib/mysql
+      - ./backend/install.sql:/docker-entrypoint-initdb.d/01-install.sql:ro
+      - ./deploy/mysql/low-memory.cnf:/etc/mysql/conf.d/low-memory.cnf:ro
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    networks:
+      - internal
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot", "-p${DB_ROOT_PASSWORD}"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 40s
+
+  php:
+    build:
+      context: .
+      dockerfile: deploy/php/Dockerfile
+    restart: unless-stopped
+    environment:
+      DB_HOST: db
+      DB_PORT: 3306
+      DB_NAME: ${DB_NAME:-ana_dental}
+      DB_USER: ${DB_USER:-ana_dental}
+      DB_PASS: ${DB_PASS}
+      SITE_NAME: ${SITE_NAME:-آنادنت}
+      SITE_URL: ${SITE_URL:-}
+      ALLOWED_ORIGINS: ${ALLOWED_ORIGINS:-}
+      SITE_ROOT: /var/www/html
+      TZ: ${TZ:-Asia/Tehran}
+      CONFIG_PATH: /var/www/html/backend/config.php
+    volumes:
+      - ./frontend/site:/var/www/html:ro
+      - ./backend:/var/www/html/backend
+      - uploads_data:/var/www/html/assets/images/uploads
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - internal
+    healthcheck:
+      test: ["CMD-SHELL", "php -r '$$s=@fsockopen(\"127.0.0.1\",9000); exit($$s?0:1);'"]
+      interval: 15s
+      timeout: 5s
+      retries: 8
+      start_period: 20s
+
+  nginx:
+    build:
+      context: .
+      dockerfile: deploy/nginx/Dockerfile
+    restart: unless-stopped
+    ports:
+      - "${HTTP_PORT:-8080}:80"
+      - "${HTTPS_PORT:-443}:443"
+    volumes:
+      - ./frontend/site:/var/www/html:ro
+      - ./backend:/var/www/html/backend:ro
+      - uploads_data:/var/www/html/assets/images/uploads
+      - ./deploy/nginx/${NGINX_CONF:-default.conf}:/etc/nginx/conf.d/default.conf:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+      - certbot_www:/var/www/certbot:ro
+    depends_on:
+      php:
+        condition: service_healthy
+    networks:
+      - internal
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://127.0.0.1/healthz"]
+      interval: 15s
+      timeout: 5s
+      retries: 8
+      start_period: 10s
+
+networks:
+  internal:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.40.0/24
+
+volumes:
+  db_data:
+  uploads_data:
+  certbot_www:
