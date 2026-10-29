@@ -4,7 +4,6 @@ Allow: /
 Disallow: /backend/admin/
 Disallow: /backend/api/
 Disallow: /backend/install.php
-Disallow: /implant-price/
 User-agent: Googlebot
 Allow: /
 Disallow: /backend/admin/
