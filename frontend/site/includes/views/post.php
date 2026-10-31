@@ -15,7 +15,7 @@ $postSlug = (string) ($post['slug'] ?? '');
 
   <?php if ($cover !== ''): ?>
     <figure class="ana-post__cover">
-      <img src="<?= dental_e($cover) ?>" alt="<?= dental_e((string) $post['title']) ?>" width="1440" height="640" fetchpriority="high" decoding="async">
+      <img src="<?= dental_e($cover) ?>" alt="<?= dental_e((string) $post['title']) ?>" fetchpriority="high" decoding="async">
     </figure>
   <?php endif; ?>
 
