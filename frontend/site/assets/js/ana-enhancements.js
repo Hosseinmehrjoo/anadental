@@ -1128,25 +1128,28 @@
   }
 
   function refreshHomeBlogSwiper(section) {
-    var el = section.querySelector('.swiper.Blog') || section.querySelector('.swiper');
+    var el = section.querySelector('.ana-home-blog-swiper') || section.querySelector('.swiper');
     if (!el) return;
-    if (el.swiper && typeof el.swiper.update === 'function') {
-      el.swiper.update();
-      if (typeof el.swiper.slideTo === 'function') el.swiper.slideTo(0, 0);
-      return;
+    if (el.swiper && typeof el.swiper.destroy === 'function') {
+      el.swiper.destroy(true, true);
     }
     if (typeof window.Swiper !== 'function') return;
     new window.Swiper(el, {
-      slidesPerView: 1.15,
+      slidesPerView: 1,
       spaceBetween: 16,
+      grabCursor: true,
+      rtl: true,
       watchOverflow: true,
+      speed: 600,
+      autoHeight: true,
+      breakpoints: {
+        600: { slidesPerView: 2 },
+        900: { slidesPerView: 2.4 },
+        1100: { slidesPerView: 3 }
+      },
       navigation: {
         nextEl: section.querySelector('.swiper-button-next_dental'),
         prevEl: section.querySelector('.swiper-button-prev_dental')
-      },
-      breakpoints: {
-        768: { slidesPerView: 2.2, spaceBetween: 18 },
-        1100: { slidesPerView: 3, spaceBetween: 22 }
       }
     });
   }
@@ -1187,10 +1190,7 @@
         refreshHomeBlogSwiper(section);
       })
       .catch(function () {
-        if (block) {
-          block.style.display = 'none';
-          block.setAttribute('hidden', '');
-        }
+        wrapper.innerHTML = '<p class="ana-home-blogs-error" role="status">بارگذاری مقالات ممکن نشد. لطفاً صفحه را رفرش کنید یا از <a href="/blog.php">مجله آنادنت</a> استفاده کنید.</p>';
       });
   }
 

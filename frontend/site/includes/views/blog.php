@@ -3,8 +3,6 @@
 /** @var list<array<string,mixed>> $categories */
 /** @var string $activeCategory */
 
-$featured = array_slice($posts, 0, 3);
-$rest = array_slice($posts, 3);
 $popular = $posts;
 usort($popular, static function (array $a, array $b): int {
     $ca = (int) ($a['comment_count'] ?? 0);
@@ -50,22 +48,8 @@ $card = static function (array $post, bool $feature = false): void {
   <?php if (!$posts): ?>
     <div class="dental-empty">هنوز مقاله‌ای منتشر نشده است.</div>
   <?php else: ?>
-    <div class="ana-mag-features">
-      <?php foreach ($featured as $post) { $card($post, true); } ?>
-    </div>
-
-    <form class="ana-news ana-news--banner" id="ana-news-form-blog">
-      <p>برای اطلاع از تازه‌ترین مطالب مجله، ایمیل خود را وارد کنید.</p>
-      <label class="ana-news__field">
-        <span class="visually-hidden">ایمیل</span>
-        <input type="email" name="email" required placeholder="ایمیل خود را وارد کنید…" autocomplete="email">
-        <button type="submit">ارسال</button>
-      </label>
-      <p class="ana-news__status" role="status"></p>
-    </form>
-
     <div class="ana-mag-layout">
-      <div>
+      <div class="ana-mag-main">
         <nav class="ana-mag-filters" aria-label="دسته‌بندی مقالات">
           <a href="/blog.php" class="<?= $activeCategory === '' ? 'is-active' : '' ?>">همه مطالب</a>
           <?php foreach ($categories as $cat): ?>
@@ -75,11 +59,9 @@ $card = static function (array $post, bool $feature = false): void {
             </a>
           <?php endforeach; ?>
         </nav>
-        <?php if ($rest): ?>
-          <div class="ana-mag-grid">
-            <?php foreach ($rest as $post) { $card($post, false); } ?>
-          </div>
-        <?php endif; ?>
+        <div class="ana-mag-grid">
+          <?php foreach ($posts as $post) { $card($post, false); } ?>
+        </div>
       </div>
       <aside class="ana-mag-side">
         <section class="ana-mag-box">
@@ -93,6 +75,16 @@ $card = static function (array $post, bool $feature = false): void {
         </section>
       </aside>
     </div>
+
+    <form class="ana-news ana-news--banner" id="ana-news-form-blog">
+      <p>برای اطلاع از تازه‌ترین مطالب مجله، ایمیل خود را وارد کنید.</p>
+      <label class="ana-news__field">
+        <span class="visually-hidden">ایمیل</span>
+        <input type="email" name="email" required placeholder="ایمیل خود را وارد کنید…" autocomplete="email">
+        <button type="submit">ارسال</button>
+      </label>
+      <p class="ana-news__status" role="status"></p>
+    </form>
   <?php endif; ?>
 </div>
 <script>

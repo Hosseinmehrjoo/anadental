@@ -290,6 +290,7 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 16px;
+  width: 100%;
 }
 .ana-mag-card {
   background: #fff;
@@ -299,6 +300,12 @@
   box-shadow: 0 8px 24px rgba(30, 50, 40, .05);
   display: flex;
   flex-direction: column;
+  min-height: 280px;
+}
+.ana-mag-card__media {
+  display: block;
+  overflow: hidden;
+  background: #f3f6f4;
 }
 .ana-mag-card__media img {
   width: 100%;
@@ -357,6 +364,9 @@
   grid-template-columns: minmax(0, 1fr) 280px;
   gap: 22px;
   align-items: start;
+}
+.ana-mag-main {
+  min-width: 0;
 }
 .ana-mag-filters {
   display: flex;
@@ -566,6 +576,26 @@
   margin-top: 4px;
 }
 .dental-comment__children { margin-inline-start: 1rem; }
+
+/* Home blog slider (API-loaded; avoid theme .Blog Swiper double-init) */
+.scetionBlogs .ana-home-blog-swiper {
+  min-height: 300px;
+  overflow: hidden;
+  width: 100%;
+}
+.scetionBlogs .ana-home-blog-swiper .swiper-slide {
+  height: auto;
+}
+.ana-home-blogs-error {
+  margin: 0;
+  padding: 1.25rem;
+  text-align: center;
+  color: #5c6778;
+  line-height: 1.8;
+}
+.ana-home-blogs-error a {
+  color: #3090b6;
+}
 
 /* Inner pages: prevent horizontal scroll from full-bleed cover */
 .dental-page:has(.ana-post) {
