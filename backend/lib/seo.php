@@ -11,14 +11,20 @@ function ad_seo_site_root(): string
 function ad_seo_site_base_url(): string
 {
     $config = ad_config();
-    if (!empty($config['site_url'])) {
-        return rtrim((string) $config['site_url'], '/');
+    $fromConfig = rtrim((string) ($config['site_url'] ?? ''), '/');
+    if ($fromConfig !== '' && !preg_match('#^https?://(127\.0\.0\.1|localhost)(:\d+)?$#i', $fromConfig)) {
+        return $fromConfig;
     }
-    $https = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+    $forwardedProto = strtolower((string) ($_SERVER['HTTP_X_FORWARDED_PROTO'] ?? ''));
+    $https = $forwardedProto === 'https'
+        || (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
         || ((int) ($_SERVER['SERVER_PORT'] ?? 0) === 443);
     $scheme = $https ? 'https' : 'http';
-    $host = (string) ($_SERVER['HTTP_HOST'] ?? 'localhost');
-    return $scheme . '://' . $host;
+    $host = (string) ($_SERVER['HTTP_HOST'] ?? '');
+    if ($host !== '' && !preg_match('#^(127\.0\.0\.1|localhost)(:\d+)?$#i', $host)) {
+        return $scheme . '://' . $host;
+    }
+    return 'https://ana-dental.ir';
 }
 
 function ad_seo_absolute_url(string $pathOrUrl): string
@@ -41,7 +47,7 @@ function ad_seo_robots_path(): string
 function ad_seo_default_robots(): string
 {
     $sitemap = ad_seo_absolute_url('sitemap.xml');
-    return "User-agent: *\nAllow: /\n\nSitemap: {$sitemap}\n";
+    return "User-agent: *\nAllow: /\nDisallow: /backend/admin/\nDisallow: /backend/api/\nDisallow: /backend/install.php\n\nSitemap: {$sitemap}\n";
 }
 
 function ad_seo_read_robots(): string
@@ -341,27 +347,20 @@ function ad_redirects_apply_request(): void
 function ad_seo_static_pages(): array
 {
     $pages = [
-        ['path' => 'index.html', 'title' => 'صفحه اصلی', 'changefreq' => 'weekly', 'priority' => '1.0'],
-        ['path' => 'about.html', 'title' => 'درباره ما', 'changefreq' => 'monthly', 'priority' => '0.7'],
-        ['path' => 'services.html', 'title' => 'خدمات', 'changefreq' => 'weekly', 'priority' => '0.8'],
-        ['path' => 'portfolio.html', 'title' => 'نمونه‌کارها', 'changefreq' => 'weekly', 'priority' => '0.8'],
-        ['path' => 'team.html', 'title' => 'تیم', 'changefreq' => 'monthly', 'priority' => '0.6'],
-        ['path' => 'blog.html', 'title' => 'وبلاگ', 'changefreq' => 'daily', 'priority' => '0.9'],
-        ['path' => 'contact.html', 'title' => 'تماس با ما', 'changefreq' => 'monthly', 'priority' => '0.7'],
-        ['path' => 'pricing.html', 'title' => 'قیمت‌گذاری', 'changefreq' => 'monthly', 'priority' => '0.6'],
-        ['path' => 'process.html', 'title' => 'نحوه انجام کار', 'changefreq' => 'monthly', 'priority' => '0.5'],
-        ['path' => 'faq.html', 'title' => 'سوالات متداول', 'changefreq' => 'monthly', 'priority' => '0.5'],
+        ['loc' => '/', 'file' => 'index.html', 'title' => 'صفحه اصلی', 'changefreq' => 'weekly', 'priority' => '1.0'],
+        ['loc' => 'blog.php', 'file' => 'blog.php', 'title' => 'وبلاگ', 'changefreq' => 'daily', 'priority' => '0.9'],
+        ['loc' => 'contact.php', 'file' => 'contact.php', 'title' => 'تماس با ما', 'changefreq' => 'monthly', 'priority' => '0.7'],
     ];
     $out = [];
     $root = ad_seo_site_root();
     foreach ($pages as $p) {
-        $file = $root . '/' . $p['path'];
+        $file = $root . '/' . $p['file'];
         if (!is_file($file)) {
             continue;
         }
         $mtime = filemtime($file) ?: null;
         $out[] = [
-            'loc' => ad_seo_absolute_url($p['path']),
+            'loc' => ad_seo_absolute_url($p['loc']),
             'lastmod' => $mtime ? gmdate('Y-m-d', $mtime) : null,
             'changefreq' => $p['changefreq'],
             'priority' => $p['priority'],
@@ -437,6 +436,9 @@ function ad_seo_portfolio_urls(): array
         if ($excerpt === '') {
             $excerpt = trim(preg_replace('/\s+/', ' ', strip_tags((string) ($row['description'] ?? ''))) ?? '');
         }
+        if (!is_file(ad_seo_site_root() . '/work.html') && !is_file(ad_seo_site_root() . '/work.php')) {
+            break;
+        }
         $out[] = [
             'loc' => ad_seo_absolute_url('work.html?slug=' . rawurlencode($slug)),
             'lastmod' => $lastmod,
@@ -480,6 +482,9 @@ function ad_seo_team_urls(): array
         }
         if ($excerpt === '') {
             $excerpt = trim((string) ($row['role'] ?? ''));
+        }
+        if (!is_file(ad_seo_site_root() . '/member.html') && !is_file(ad_seo_site_root() . '/member.php')) {
+            break;
         }
         $out[] = [
             'loc' => ad_seo_absolute_url('member.html?slug=' . rawurlencode($slug)),
@@ -576,6 +581,7 @@ function ad_seo_build_llms_txt(): string
 function ad_seo_output_sitemap(): void
 {
     header('Content-Type: application/xml; charset=utf-8');
+    header('Cache-Control: public, max-age=300');
     echo ad_seo_build_sitemap_xml();
     exit;
 }
@@ -599,10 +605,31 @@ function ad_seo_refresh_public_files(): void
 }
 
 /** Call after blog publish/update/delete */
+function ad_seo_ping_search_engines(): void
+{
+    $sitemap = ad_seo_absolute_url('sitemap.xml');
+    $targets = [
+        'https://www.google.com/ping?sitemap=' . rawurlencode($sitemap),
+        'https://www.bing.com/ping?sitemap=' . rawurlencode($sitemap),
+    ];
+    $ctx = stream_context_create([
+        'http' => [
+            'method' => 'GET',
+            'timeout' => 4,
+            'ignore_errors' => true,
+            'header' => "User-Agent: ana-dental-sitemap-ping\r\n",
+        ],
+    ]);
+    foreach ($targets as $url) {
+        @file_get_contents($url, false, $ctx);
+    }
+}
+
 function ad_seo_on_content_change(): void
 {
     try {
         ad_seo_refresh_public_files();
+        ad_seo_ping_search_engines();
     } catch (Throwable $e) {
         // non-fatal
     }

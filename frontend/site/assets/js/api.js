@@ -62,8 +62,15 @@
     contact: function (payload) {
       return request('/contact.php', { method: 'POST', body: payload });
     },
-    blogList: function (category) {
-      var q = category ? '?category=' + encodeURIComponent(category) : '';
+    blogList: function (category, limit) {
+      var params = [];
+      if (category) {
+        params.push('category=' + encodeURIComponent(category));
+      }
+      if (limit != null && limit !== '') {
+        params.push('limit=' + encodeURIComponent(String(limit)));
+      }
+      var q = params.length ? '?' + params.join('&') : '';
       return request('/blog.php' + q);
     },
     blogPost: function (slug) {

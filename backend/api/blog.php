@@ -14,6 +14,13 @@ if (($_SERVER['REQUEST_METHOD'] ?? 'GET') !== 'GET') {
 
 $slug = trim((string) ($_GET['slug'] ?? ''));
 $category = trim((string) ($_GET['category'] ?? ''));
+$limit = (int) ($_GET['limit'] ?? 50);
+if ($limit < 1) {
+    $limit = 1;
+}
+if ($limit > 50) {
+    $limit = 50;
+}
 
 try {
     ad_media_ensure_schema();
@@ -60,7 +67,7 @@ try {
     }
     $sql .= ' WHERE p.status = \'published\'
               ORDER BY p.published_at DESC, p.id DESC
-              LIMIT 50';
+              LIMIT ' . $limit;
 
     if ($params) {
         $stmt = ad_db()->prepare($sql);

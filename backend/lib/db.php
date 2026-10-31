@@ -11,6 +11,12 @@ function ad_config(): array
         throw new RuntimeException('فایل config.php یافت نشد. ابتدا نصب را انجام دهید.');
     }
     $config = require $path;
+    $envSiteUrl = rtrim((string) (getenv('SITE_URL') ?: ''), '/');
+    if ($envSiteUrl !== '') {
+        $config['site_url'] = $envSiteUrl;
+    } elseif (!empty($config['site_url']) && preg_match('#^https?://(127\.0\.0\.1|localhost)(:\d+)?$#i', rtrim((string) $config['site_url'], '/'))) {
+        $config['site_url'] = '';
+    }
     if (!empty($config['timezone'])) {
         date_default_timezone_set($config['timezone']);
     }

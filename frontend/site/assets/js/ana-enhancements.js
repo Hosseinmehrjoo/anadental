@@ -1068,6 +1068,132 @@
     canvas.addEventListener('pointerleave', onLeave, { passive: true });
   }
 
+  function escapeHtml(value) {
+    return String(value == null ? '' : value)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  function stripHtml(value) {
+    var tmp = document.createElement('div');
+    tmp.innerHTML = String(value == null ? '' : value);
+    return (tmp.textContent || tmp.innerText || '').replace(/\s+/g, ' ').trim();
+  }
+
+  function blogCoverUrl(post) {
+    var cover = (post && (post.cover_url || post.cover)) || '';
+    cover = String(cover).trim();
+    if (!cover) return '';
+    if (/^https?:\/\//i.test(cover) || cover.charAt(0) === '/') return cover;
+    return '/' + cover.replace(/^\/+/, '');
+  }
+
+  function blogPostHref(post) {
+    var slug = String((post && post.slug) || '').trim();
+    if (!slug) return '/blog.php';
+    return '/post/' + encodeURIComponent(slug);
+  }
+
+  function renderHomeBlogCard(post) {
+    var href = blogPostHref(post);
+    var title = escapeHtml(post.title || '');
+    var excerpt = escapeHtml(stripHtml(post.excerpt || post.meta_description || ''));
+    var cover = blogCoverUrl(post);
+    var id = Number(post.id) || 0;
+    var img = cover
+      ? '<img width="443" height="230" src="' + escapeHtml(cover) + '" class="attachment-archive_content_image size-archive_content_image" alt="' + title + '" loading="lazy" decoding="async">'
+      : '';
+    return (
+      '<article id="post-' + id + '" class="archiveCardAna swiper-slide">' +
+        '<div class="archiveImage">' +
+          (cover
+            ? '<a class="post-thumbnail" href="' + escapeHtml(href) + '" aria-hidden="true" tabindex="-1">' + img + '</a>'
+            : '') +
+        '</div>' +
+        '<h3><a href="' + escapeHtml(href) + '">' + title + '</a></h3>' +
+        '<footer class="FootersArticle">' +
+          '<div class="TxtPosts"><p>' + excerpt + '</p></div>' +
+          '<a href="' + escapeHtml(href) + '" class="MorePosts">' +
+            '<svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">' +
+              '<path d="M6.25 6.25L15 15" stroke="#3090B6" stroke-width="2" stroke-linecap="round" />' +
+              '<path d="M13.333 5.15659C13.333 5.15659 6.62643 4.59124 5.60868 5.60899C4.59084 6.62674 5.15634 13.3333 5.15634 13.3333" stroke="#3090B6" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />' +
+            '</svg>' +
+            '<span>بـیشتر بخوانـیم</span>' +
+          '</a>' +
+        '</footer>' +
+      '</article>'
+    );
+  }
+
+  function refreshHomeBlogSwiper(section) {
+    var el = section.querySelector('.swiper.Blog') || section.querySelector('.swiper');
+    if (!el) return;
+    if (el.swiper && typeof el.swiper.update === 'function') {
+      el.swiper.update();
+      if (typeof el.swiper.slideTo === 'function') el.swiper.slideTo(0, 0);
+      return;
+    }
+    if (typeof window.Swiper !== 'function') return;
+    new window.Swiper(el, {
+      slidesPerView: 1.15,
+      spaceBetween: 16,
+      watchOverflow: true,
+      navigation: {
+        nextEl: section.querySelector('.swiper-button-next_dental'),
+        prevEl: section.querySelector('.swiper-button-prev_dental')
+      },
+      breakpoints: {
+        768: { slidesPerView: 2.2, spaceBetween: 18 },
+        1100: { slidesPerView: 3, spaceBetween: 22 }
+      }
+    });
+  }
+
+  function fetchHomeBlogItems() {
+    if (window.DentalApi && typeof window.DentalApi.blogList === 'function') {
+      return window.DentalApi.blogList('', 8).then(function (data) {
+        return (data && data.data) || [];
+      });
+    }
+    return fetch('/backend/api/blog.php?limit=8', { credentials: 'same-origin' })
+      .then(function (r) { return r.json(); })
+      .then(function (data) { return (data && data.data) || []; });
+  }
+
+  function loadHomeBlogs() {
+    var section = document.querySelector('.FlexBlogsSection.mainView') || document.querySelector('.FlexBlogsSection');
+    if (!section) return;
+    var wrapper = section.querySelector('.swiper-wrapper');
+    if (!wrapper) return;
+    var block = section.closest('.scetionBlogs');
+
+    fetchHomeBlogItems()
+      .then(function (items) {
+        items = Array.isArray(items) ? items : [];
+        if (!items.length) {
+          if (block) {
+            block.style.display = 'none';
+            block.setAttribute('hidden', '');
+          }
+          return;
+        }
+        if (block) {
+          block.style.display = '';
+          block.removeAttribute('hidden');
+        }
+        wrapper.innerHTML = items.map(renderHomeBlogCard).join('');
+        refreshHomeBlogSwiper(section);
+      })
+      .catch(function () {
+        if (block) {
+          block.style.display = 'none';
+          block.setAttribute('hidden', '');
+        }
+      });
+  }
+
   function initImplantReveal() {
     var section = document.querySelector('.Sectionsimplants .SectionsParents');
     if (!section) return;
@@ -1091,6 +1217,7 @@
   ready(function () {
     initBaSliders();
     loadVideos();
+    loadHomeBlogs();
     initEarthFlags();
     initMapConsent();
     initFormBalloon();
