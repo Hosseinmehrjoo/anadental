@@ -83,6 +83,14 @@
 .ana-map-placeholder__btn:hover {
   background: #287a9a;
 }
+.ana-map-embed--neshan iframe {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: min(450px, 70vw);
+  border: 0;
+  border-radius: 16px;
+}
 .ana-map-placeholder__link {
   font-size: 0.875rem;
   color: #3090b6;

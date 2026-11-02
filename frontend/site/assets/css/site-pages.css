@@ -575,7 +575,126 @@
   box-sizing: border-box;
   margin-top: 4px;
 }
-.dental-comment__children { margin-inline-start: 1rem; }
+.ana-map-embed--neshan iframe {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: min(450px, 70vw);
+  border: 0;
+  border-radius: 16px;
+}
+
+.ana-contact-page {
+  display: grid;
+  gap: 1.75rem;
+  margin-top: 1.5rem;
+}
+@media (min-width: 900px) {
+  .ana-contact-page {
+    grid-template-columns: 1fr 1fr;
+  }
+  .ana-contact-page__map,
+  .ana-contact-page__form {
+    grid-column: 1 / -1;
+  }
+  .ana-contact-page__map {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
+    gap: 1.25rem;
+    align-items: start;
+  }
+  .ana-contact-page__map h2 {
+    grid-column: 1 / -1;
+  }
+}
+.ana-contact-dl div {
+  margin-bottom: 1rem;
+}
+.ana-contact-dl dt {
+  font-weight: 600;
+  color: #1d264f;
+  margin-bottom: 0.25rem;
+}
+.ana-contact-dl dd {
+  margin: 0;
+  line-height: 1.75;
+}
+.ana-contact-license {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+.ana-contact-license th,
+.ana-contact-license td {
+  padding: 0.5rem 0.65rem;
+  border-bottom: 1px solid #e2e8f0;
+  text-align: start;
+  vertical-align: top;
+}
+.ana-contact-license th {
+  width: 38%;
+  color: #475569;
+  font-weight: 500;
+}
+
+.dental-comments__lead {
+  color: #5c6778;
+  margin: 0 0 1rem;
+}
+.dental-comment {
+  padding: 0.85rem 0;
+  border-bottom: 1px solid #e8edf2;
+}
+.dental-comment--staff {
+  background: #f0f9ff;
+  border-radius: 12px;
+  padding: 0.85rem 1rem;
+  margin-bottom: 0.5rem;
+  border-bottom: none;
+}
+.dental-comment__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.75rem;
+  margin-bottom: 0.35rem;
+}
+.dental-comment__badge {
+  font-size: 0.75rem;
+  background: #3090b6;
+  color: #fff;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+}
+.dental-comment__time {
+  font-size: 0.82rem;
+  color: #64748b;
+}
+.dental-comment__reply {
+  margin-top: 0.5rem;
+  background: none;
+  border: none;
+  color: #3090b6;
+  cursor: pointer;
+  font: inherit;
+  padding: 0;
+}
+.dental-comment-reply-hint {
+  color: #3090b6;
+  margin: 0 0 0.75rem;
+}
+.dental-form__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+.dental-comment__children {
+  margin-inline-start: 1rem;
+  margin-top: 0.5rem;
+  padding-inline-start: 0.75rem;
+  border-inline-start: 2px solid #e2e8f0;
+}
 
 /* Home blog slider (API-loaded; avoid theme .Blog Swiper double-init) */
 .scetionBlogs .ana-home-blog-swiper {

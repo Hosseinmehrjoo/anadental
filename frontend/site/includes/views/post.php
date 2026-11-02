@@ -42,37 +42,57 @@ $postSlug = (string) ($post['slug'] ?? '');
       </div>
 
       <section class="dental-comments" id="comments">
-        <h2>نظرات</h2>
+        <h2>نظرات و پرسش و پاسخ</h2>
+        <p class="dental-comments__lead">سؤال خود را بپرسید یا نظرتان را بنویسید. پاسخ‌های پزشک پس از تأیید نمایش داده می‌شود.</p>
         <div id="dental-comments-list">
           <?php if (!$comments): ?>
-            <p class="dental-empty">هنوز نظری ثبت نشده است.</p>
+            <p class="dental-empty">هنوز پرسش یا نظری ثبت نشده است.</p>
           <?php else: ?>
             <?php
             $render = function (array $nodes) use (&$render): void {
                 foreach ($nodes as $node) {
-                    echo '<div class="dental-comment">';
+                    $id = (int) ($node['id'] ?? 0);
+                    $isStaff = !empty($node['is_staff']);
+                    echo '<article class="dental-comment' . ($isStaff ? ' dental-comment--staff' : '') . '" id="comment-' . $id . '" data-comment-id="' . $id . '">';
+                    echo '<header class="dental-comment__head">';
                     echo '<strong>' . dental_e((string) ($node['author_name'] ?? '')) . '</strong>';
-                    echo '<div>' . nl2br(dental_e((string) ($node['body'] ?? ''))) . '</div>';
-                    if (!empty($node['children']) && is_array($node['children'])) {
+                    if ($isStaff) {
+                        echo ' <span class="dental-comment__badge">پاسخ پزشک</span>';
+                    }
+                    if (!empty($node['created_at'])) {
+                        echo ' <time class="dental-comment__time" datetime="' . dental_e((string) $node['created_at']) . '">' . dental_e(dental_format_date((string) $node['created_at'])) . '</time>';
+                    }
+                    echo '</header>';
+                    echo '<div class="dental-comment__body">' . nl2br(dental_e((string) ($node['body'] ?? ''))) . '</div>';
+                    if (!$isStaff && $id > 0) {
+                        echo '<button type="button" class="dental-comment__reply" data-reply-to="' . $id . '" data-reply-name="' . dental_e((string) ($node['author_name'] ?? '')) . '">پاسخ</button>';
+                    }
+                    $replies = $node['replies'] ?? $node['children'] ?? [];
+                    if ($replies && is_array($replies)) {
                         echo '<div class="dental-comment__children">';
-                        $render($node['children']);
+                        $render($replies);
                         echo '</div>';
                     }
-                    echo '</div>';
+                    echo '</article>';
                 }
             };
             $render($comments);
             ?>
           <?php endif; ?>
         </div>
-        <h3>ثبت نظر</h3>
+        <h3 id="dental-comment-form-title">ثبت نظر یا پرسش</h3>
+        <p class="dental-comment-reply-hint" id="dental-comment-reply-hint" hidden></p>
         <form class="dental-form" id="dental-comment-form">
           <input type="hidden" name="slug" value="<?= dental_e($postSlug) ?>">
+          <input type="hidden" name="parent_id" id="dental-comment-parent" value="0">
           <input type="text" name="website" value="" tabindex="-1" autocomplete="off" class="ana-contact-form__hp" aria-hidden="true">
-          <label>نام<input name="name" required maxlength="120"></label>
+          <label>نام<input name="name" id="dental-comment-name" required maxlength="120"></label>
           <label>ایمیل (اختیاری)<input name="email" type="email" maxlength="180"></label>
-          <label>متن نظر<textarea name="body" rows="5" required maxlength="5000"></textarea></label>
-          <button type="submit">ارسال نظر</button>
+          <label>متن<textarea name="body" id="dental-comment-body" rows="5" required maxlength="5000" placeholder="سؤال یا نظر خود را بنویسید…"></textarea></label>
+          <div class="dental-form__actions">
+            <button type="submit" id="dental-comment-submit">ارسال</button>
+            <button type="button" class="btn btn-secondary" id="dental-comment-cancel-reply" hidden>لغو پاسخ</button>
+          </div>
           <p id="dental-comment-status" role="status"></p>
         </form>
       </section>
@@ -181,18 +201,58 @@ document.getElementById('dental-comment-form')?.addEventListener('submit', async
   e.preventDefault();
   var form = e.currentTarget;
   var status = document.getElementById('dental-comment-status');
-  var btn = form.querySelector('[type=submit]');
+  var btn = document.getElementById('dental-comment-submit');
   btn.disabled = true;
   status.textContent = 'در حال ارسال…';
   try {
     var payload = Object.fromEntries(new FormData(form).entries());
     var res = await DentalApi.commentCreate(payload);
-    status.textContent = res.message || 'نظر ثبت شد.';
+    status.textContent = res.message || 'ثبت شد.';
     form.reset();
+    document.getElementById('dental-comment-parent').value = '0';
+    var hint = document.getElementById('dental-comment-reply-hint');
+    var cancel = document.getElementById('dental-comment-cancel-reply');
+    if (hint) hint.hidden = true;
+    if (cancel) cancel.hidden = true;
+    if (btn) btn.textContent = 'ارسال';
   } catch (err) {
-    status.textContent = err.message || 'ارسال نظر ممکن نشد.';
+    status.textContent = err.message || 'ارسال ممکن نشد.';
   } finally {
     btn.disabled = false;
   }
 });
+
+(function () {
+  var parentInput = document.getElementById('dental-comment-parent');
+  var hint = document.getElementById('dental-comment-reply-hint');
+  var cancel = document.getElementById('dental-comment-cancel-reply');
+  var submit = document.getElementById('dental-comment-submit');
+  var body = document.getElementById('dental-comment-body');
+  if (!parentInput) return;
+
+  function clearReply() {
+    parentInput.value = '0';
+    if (hint) hint.hidden = true;
+    if (cancel) cancel.hidden = true;
+    if (submit) submit.textContent = 'ارسال';
+  }
+
+  document.getElementById('dental-comments-list')?.addEventListener('click', function (e) {
+    var btn = e.target && e.target.closest ? e.target.closest('[data-reply-to]') : null;
+    if (!btn) return;
+    var id = btn.getAttribute('data-reply-to');
+    var name = btn.getAttribute('data-reply-name') || '';
+    parentInput.value = id || '0';
+    if (hint) {
+      hint.hidden = false;
+      hint.textContent = 'در حال پاسخ به «' + name + '»';
+    }
+    if (cancel) cancel.hidden = false;
+    if (submit) submit.textContent = 'ارسال پاسخ';
+    document.getElementById('dental-comment-form-title')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    body?.focus();
+  });
+
+  cancel?.addEventListener('click', clearReply);
+})();
 </script>

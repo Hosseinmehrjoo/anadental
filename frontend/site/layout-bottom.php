@@ -8,6 +8,7 @@ if (is_file($modalPath)) {
     readfile($modalPath);
 }
 ?>
+<?php readfile(__DIR__ . '/includes/contact-cta.fragment.html'); ?>
 <script src="/assets/vendor/jquery.min.js?ver=3.7.1" defer></script>
 <script src="/assets/bundles/ds-bundle-js-409edc9553bebdaf.js?ver=20261021i" defer></script>
 <script src="/assets/js/api.js" defer></script>
