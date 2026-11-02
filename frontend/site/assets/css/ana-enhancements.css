@@ -83,6 +83,50 @@
 .ana-map-placeholder__btn:hover {
   background: #287a9a;
 }
+.ana-map-embed--static .ana-map-link {
+  display: block;
+  line-height: 0;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 14px 36px rgba(16, 40, 70, 0.14);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.ana-map-embed--static .ana-map-link:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px rgba(16, 40, 70, 0.18);
+}
+.ana-map-embed--static img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border: 0;
+}
+
+a.ana-call-me-btn,
+.ana-call-me-btn {
+  display: inline-block;
+  padding: 12px 32px;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff !important;
+  background-color: #1d264f !important;
+  border: 2px solid #ffffff !important;
+  border-radius: 50px;
+  text-decoration: none !important;
+  text-align: center;
+  box-shadow: 0 4px 14px rgba(29, 38, 79, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+a.ana-call-me-btn:hover,
+.ana-call-me-btn:hover {
+  color: #ffffff !important;
+  background-color: #243058 !important;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(29, 38, 79, 0.35);
+}
+
 .ana-map-embed--neshan iframe {
   display: block;
   width: 100%;

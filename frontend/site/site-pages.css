@@ -575,6 +575,19 @@
   box-sizing: border-box;
   margin-top: 4px;
 }
+.ana-map-embed--static .ana-map-link {
+  display: block;
+  line-height: 0;
+  border-radius: 16px;
+  overflow: hidden;
+}
+.ana-map-embed--static img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+}
+
 .ana-map-embed--neshan iframe {
   display: block;
   width: 100%;
