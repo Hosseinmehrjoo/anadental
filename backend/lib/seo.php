@@ -5,7 +5,9 @@ require_once __DIR__ . '/helpers.php';
 
 function ad_seo_site_root(): string
 {
-    return dirname(__DIR__, 2);
+    $config = ad_config();
+    return rtrim(str_replace('\\', '/', (string) ($config['site_root'] ?? '')), '/')
+        ?: dirname(__DIR__, 2);
 }
 
 function ad_seo_site_base_url(): string
@@ -350,6 +352,7 @@ function ad_seo_static_pages(): array
         ['loc' => '/', 'file' => 'index.html', 'title' => 'صفحه اصلی', 'changefreq' => 'weekly', 'priority' => '1.0'],
         ['loc' => 'blog.php', 'file' => 'blog.php', 'title' => 'وبلاگ', 'changefreq' => 'daily', 'priority' => '0.9'],
         ['loc' => 'contact.php', 'file' => 'contact.php', 'title' => 'تماس با ما', 'changefreq' => 'monthly', 'priority' => '0.7'],
+        ['loc' => 'implant-price/', 'file' => 'implant-price/index.html', 'title' => 'قیمت ایمپلنت', 'changefreq' => 'weekly', 'priority' => '0.9'],
     ];
     $out = [];
     $root = ad_seo_site_root();
@@ -527,55 +530,71 @@ function ad_seo_build_llms_txt(): string
     $config = ad_config();
     $siteName = (string) ($config['site_name'] ?? 'آنادنت');
     $base = ad_seo_site_base_url();
+    $sitemap = ad_seo_absolute_url('sitemap.xml');
+
     $lines = [
         '# ' . $siteName,
-        '> وب‌سایت رسمی ' . $siteName . ' — خدمات توسعه نرم‌افزار، وب و اپلیکیشن.',
         '',
-        'Site: ' . $base,
-        'Sitemap: ' . ad_seo_absolute_url('sitemap.xml'),
+        '> مرکز تخصصی کاشت ایمپلنت و خدمات دندانپزشکی در تهران (جنت‌آباد مرکزی). زبان سایت فارسی (راست‌به‌چپ).',
+        '> تماس: [021-91300511](tel:02191300511) — وب‌سایت: ' . $base,
+        '',
+        'این فایل [`llms.txt`](https://llmstxt.org/) برای دستیارها و مدل‌های زبانی است: خلاصهٔ سایت و لینک‌های مهم.',
+        'برای فهرست کامل URLها از [' . 'sitemap.xml' . '](' . $sitemap . ') استفاده کنید.',
+        'محتوای زیر از صفحات منتشرشدهٔ سایت به‌صورت خودکار ساخته می‌شود.',
         '',
         '## صفحات اصلی',
     ];
+
     foreach (ad_seo_static_pages() as $p) {
-        $lines[] = '- [' . $p['title'] . '](' . $p['loc'] . ')';
+        $lines[] = ad_seo_llms_link_line($p);
     }
+
     $posts = ad_seo_blog_urls();
     $lines[] = '';
-    $lines[] = '## مقالات وبلاگ';
+    $lines[] = '## مقالات و راهنماها';
     if (!$posts) {
-        $lines[] = '- هنوز مقاله‌ای منتشر نشده است.';
+        $lines[] = '';
+        $lines[] = 'هنوز مقالهٔ منتشرشده‌ای در وبلاگ ثبت نشده است.';
     } else {
         foreach ($posts as $p) {
-            $extra = $p['excerpt'] !== '' ? ': ' . mb_substr($p['excerpt'], 0, 160) : '';
-            $lines[] = '- [' . $p['title'] . '](' . $p['loc'] . ')' . $extra;
+            $lines[] = ad_seo_llms_link_line($p, 200);
         }
     }
-    $works = ad_seo_portfolio_urls();
+
+    $optional = [];
+    foreach (ad_seo_portfolio_urls() as $p) {
+        $optional[] = ad_seo_llms_link_line($p, 140);
+    }
+    foreach (ad_seo_team_urls() as $p) {
+        $optional[] = ad_seo_llms_link_line($p, 140);
+    }
+
     $lines[] = '';
-    $lines[] = '## نمونه‌کارها';
-    if (!$works) {
-        $lines[] = '- هنوز نمونه‌کاری ثبت نشده است.';
+    $lines[] = '## Optional';
+    if (!$optional) {
+        $lines[] = '';
+        $lines[] = 'صفحات تکمیلی (نمونه‌کار یا پروفایل تیم) فعلاً در سایت فعال نیستند.';
     } else {
-        foreach ($works as $p) {
-            $extra = $p['excerpt'] !== '' ? ': ' . mb_substr($p['excerpt'], 0, 160) : '';
-            $lines[] = '- [' . $p['title'] . '](' . $p['loc'] . ')' . $extra;
+        foreach ($optional as $line) {
+            $lines[] = $line;
         }
     }
-    $members = ad_seo_team_urls();
-    $lines[] = '';
-    $lines[] = '## اعضای تیم';
-    if (!$members) {
-        $lines[] = '- هنوز عضوی ثبت نشده است.';
-    } else {
-        foreach ($members as $p) {
-            $extra = $p['excerpt'] !== '' ? ': ' . mb_substr($p['excerpt'], 0, 160) : '';
-            $lines[] = '- [' . $p['title'] . '](' . $p['loc'] . ')' . $extra;
-        }
-    }
-    $lines[] = '';
-    $lines[] = '## توجه';
-    $lines[] = 'این فایل به‌صورت خودکار از محتوای منتشرشده سایت تولید می‌شود.';
+
     return implode("\n", $lines) . "\n";
+}
+
+/**
+ * @param array{title:string,loc:string,excerpt?:string} $entry
+ */
+function ad_seo_llms_link_line(array $entry, int $excerptMax = 160): string
+{
+    $title = (string) ($entry['title'] ?? '');
+    $loc = (string) ($entry['loc'] ?? '');
+    $excerpt = trim((string) ($entry['excerpt'] ?? ''));
+    $suffix = $excerpt !== '' && $excerptMax > 0
+        ? ': ' . mb_substr($excerpt, 0, $excerptMax)
+        : '';
+    return '- [' . $title . '](' . $loc . ')' . $suffix;
 }
 
 function ad_seo_output_sitemap(): void
@@ -588,7 +607,8 @@ function ad_seo_output_sitemap(): void
 
 function ad_seo_output_llms(): void
 {
-    header('Content-Type: text/plain; charset=utf-8');
+    header('Content-Type: text/markdown; charset=utf-8');
+    header('Cache-Control: public, max-age=300');
     echo ad_seo_build_llms_txt();
     exit;
 }

@@ -1,0 +1,23 @@
+# آنادنت
+
+> مرکز تخصصی کاشت ایمپلنت و خدمات دندانپزشکی در تهران (جنت‌آباد مرکزی). زبان سایت فارسی (راست‌به‌چپ).
+> تماس: [021-91300511](tel:02191300511) — وب‌سایت: https://ana-dental.ir
+
+این فایل [`llms.txt`](https://llmstxt.org/) برای دستیارها و مدل‌های زبانی است: خلاصهٔ سایت و لینک‌های مهم.
+برای فهرست کامل URLها از [sitemap.xml](https://ana-dental.ir/sitemap.xml) استفاده کنید.
+نسخهٔ به‌روز این فایل (شامل مقالات وبلاگ) از پنل مدیریت یا endpoint پویا `/llms.php` ساخته می‌شود.
+
+## صفحات اصلی
+
+- [صفحه اصلی](https://ana-dental.ir/)
+- [وبلاگ](https://ana-dental.ir/blog.php)
+- [تماس با ما](https://ana-dental.ir/contact.php)
+- [قیمت ایمپلنت](https://ana-dental.ir/implant-price/)
+
+## مقالات و راهنماها
+
+مقالات منتشرشده در [وبلاگ](https://ana-dental.ir/blog.php) و آدرس‌های `/post/{slug}` در sitemap.xml فهرست می‌شوند.
+
+## Optional
+
+صفحات تکمیلی (نمونه‌کار، پروفایل تیم، مقالات قدیمی) در [sitemap.xml](https://ana-dental.ir/sitemap.xml) فهرست می‌شوند.
