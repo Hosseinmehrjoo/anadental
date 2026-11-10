@@ -332,11 +332,12 @@ function ad_seo_apply_legacy_redirects(): void
 
     $home = rtrim(ad_seo_absolute_url('/'), '/');
     $map = [
-        '/درباره-ما' => $home . '/#ana-about',
+        '/درباره-ما' => ad_seo_absolute_url('about.php'),
+        '/about' => ad_seo_absolute_url('about.php'),
         '/سؤالات-متداول' => $home . '/#ana-faq',
         '/bone-grafting' => ad_seo_absolute_url('implant-price/'),
         '/post/implant-price' => ad_seo_absolute_url('implant-price/'),
-        '/post/درباره-ما' => ad_seo_absolute_url('contact.php'),
+        '/post/درباره-ما' => ad_seo_absolute_url('about.php'),
         '/contact' => ad_seo_absolute_url('contact.php'),
     ];
     if (isset($map[$path])) {
@@ -390,6 +391,7 @@ function ad_seo_static_pages(): array
     $pages = [
         ['loc' => '/', 'file' => 'index.html', 'title' => 'صفحه اصلی', 'changefreq' => 'weekly', 'priority' => '1.0'],
         ['loc' => 'blog.php', 'file' => 'blog.php', 'title' => 'وبلاگ', 'changefreq' => 'daily', 'priority' => '0.9'],
+        ['loc' => 'about.php', 'file' => 'about.php', 'title' => 'درباره ما', 'changefreq' => 'monthly', 'priority' => '0.75'],
         ['loc' => 'contact.php', 'file' => 'contact.php', 'title' => 'تماس با ما', 'changefreq' => 'monthly', 'priority' => '0.7'],
         ['loc' => 'implant-price/', 'file' => 'implant-price/index.html', 'title' => 'قیمت ایمپلنت', 'changefreq' => 'weekly', 'priority' => '0.9'],
     ];

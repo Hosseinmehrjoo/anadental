@@ -11,6 +11,7 @@
 
 - [صفحه اصلی](https://ana-dental.ir/)
 - [وبلاگ](https://ana-dental.ir/blog.php)
+- [درباره ما](https://ana-dental.ir/about.php)
 - [تماس با ما](https://ana-dental.ir/contact.php)
 - [قیمت ایمپلنت](https://ana-dental.ir/implant-price/)
 

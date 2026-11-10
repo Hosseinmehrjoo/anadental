@@ -28,7 +28,8 @@ $canonical = $canonicalPath !== '' ? $canonicalPath : '';
   <noscript><link rel="stylesheet" href="/assets/bundles/ds-bundle-css-86786fe9add48d8e.css?ver=20261021g"></noscript>
   <link rel="stylesheet" href="/assets/theme/style-rtl.css?ver=1.2.59" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="/assets/theme/style-rtl.css?ver=1.2.59"></noscript>
-  <link rel="stylesheet" href="/assets/css/site-pages.css?ver=20261110a">
+  <link rel="stylesheet" href="/assets/css/site-pages.css?ver=20261110c">
+  <link rel="stylesheet" href="/assets/css/ana-enhancements.css?ver=20261102b">
   <link rel="stylesheet" href="/assets/css/ana-enhancements.css?ver=20261102b">
   <link rel="icon" href="/assets/media/2025/09/cropped-logo-3-32x32.webp" sizes="32x32">
 </head>
