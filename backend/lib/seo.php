@@ -307,6 +307,45 @@ function ad_redirects_sync_htaccess(): void
 }
 
 /**
+ * Legacy WordPress / broken URLs — 301 before CMS redirects (no DB required).
+ */
+function ad_seo_apply_legacy_redirects(): void
+{
+    $uri = (string) ($_SERVER['REQUEST_URI'] ?? '/');
+    $pathRaw = parse_url($uri, PHP_URL_PATH) ?: '/';
+    $path = rawurldecode($pathRaw);
+    if ($path !== '/' && str_ends_with($path, '/')) {
+        $path = rtrim($path, '/');
+    }
+    $query = (string) (parse_url($uri, PHP_URL_QUERY) ?? '');
+
+    if ($path === '/favicon.ico') {
+        header('Location: ' . ad_seo_absolute_url('assets/media/2025/09/cropped-logo-3-32x32.webp'), true, 301);
+        exit;
+    }
+
+    if ($path === '/post.php' && preg_match('/(?:^|&)slug=([^&]+)/', $query, $m)) {
+        $slug = rawurldecode($m[1]);
+        header('Location: ' . ad_seo_absolute_url('post/' . rawurlencode($slug)), true, 301);
+        exit;
+    }
+
+    $home = rtrim(ad_seo_absolute_url('/'), '/');
+    $map = [
+        '/درباره-ما' => $home . '/#ana-about',
+        '/سؤالات-متداول' => $home . '/#ana-faq',
+        '/bone-grafting' => ad_seo_absolute_url('implant-price/'),
+        '/post/implant-price' => ad_seo_absolute_url('implant-price/'),
+        '/post/درباره-ما' => ad_seo_absolute_url('contact.php'),
+        '/contact' => ad_seo_absolute_url('contact.php'),
+    ];
+    if (isset($map[$path])) {
+        header('Location: ' . $map[$path], true, 301);
+        exit;
+    }
+}
+
+/**
  * Apply matching redirect for current request (PHP fallback).
  */
 function ad_redirects_apply_request(): void

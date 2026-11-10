@@ -24,6 +24,13 @@ require_once $backendRoot . '/lib/comments.php';
 require_once $backendRoot . '/lib/media.php';
 require_once $backendRoot . '/lib/seo.php';
 
+try {
+    ad_seo_apply_legacy_redirects();
+    ad_redirects_apply_request();
+} catch (Throwable $e) {
+    // Legacy redirects above; DB redirects optional until install
+}
+
 function dental_e(?string $value): string
 {
     return htmlspecialchars((string) $value, ENT_QUOTES | ENT_SUBSTITUTE, 'UTF-8');

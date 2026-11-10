@@ -532,8 +532,11 @@
   top: clamp(72px, 12vw, 96px);
   z-index: 2;
   max-height: calc(100vh - 110px);
-  overflow: auto;
-  overscroll-behavior: contain;
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: auto;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
 }
 .ana-post-toc__list {
   list-style: none;
@@ -751,7 +754,12 @@
   }
   .ana-post-toc {
     position: static;
-    max-height: none;
+    max-height: min(50vh, 360px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior: auto;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-y;
   }
   .ana-post__cover img {
     max-height: min(62vw, 380px);
