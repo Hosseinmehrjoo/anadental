@@ -3,9 +3,12 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/includes/bootstrap.php';
 
-$path = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
-$slug = trim((string) basename($path), '/');
-if ($slug === '' || $slug === 'post') {
+$slug = trim((string) ($_GET['slug'] ?? ''));
+if ($slug === '') {
+    $path = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?: '/';
+    $slug = trim((string) basename($path), '/');
+}
+if ($slug === '' || $slug === 'post' || $slug === 'post.php') {
     http_response_code(404);
     exit;
 }

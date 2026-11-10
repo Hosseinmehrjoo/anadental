@@ -324,12 +324,6 @@ function ad_seo_apply_legacy_redirects(): void
         exit;
     }
 
-    if ($path === '/post.php' && preg_match('/(?:^|&)slug=([^&]+)/', $query, $m)) {
-        $slug = rawurldecode($m[1]);
-        header('Location: ' . ad_seo_absolute_url('post/' . rawurlencode($slug)), true, 301);
-        exit;
-    }
-
     $home = rtrim(ad_seo_absolute_url('/'), '/');
     $map = [
         '/درباره-ما' => ad_seo_absolute_url('about.php'),
