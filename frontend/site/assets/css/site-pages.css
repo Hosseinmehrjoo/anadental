@@ -521,6 +521,195 @@
   overflow-x: auto;
 }
 
+/* Embeds: آپارات، ویدیو، پادکست (CKEditor) */
+.ana-post__content .ana-embed {
+  margin: 1.75rem 0;
+  max-width: 100%;
+}
+.ana-post__content .ana-embed__caption {
+  margin: 0.65rem 0 0;
+  text-align: center;
+  font-size: 0.92rem;
+  color: #5c6778;
+}
+.ana-post__content .ana-embed__ratio {
+  position: relative;
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  background: linear-gradient(145deg, #0f172a 0%, #1d264f 100%);
+  box-shadow:
+    0 18px 40px rgba(29, 38, 79, 0.18),
+    0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+}
+.ana-post__content .ana-embed__ratio--16x9 {
+  aspect-ratio: 16 / 9;
+}
+.ana-post__content .ana-embed__ratio--9x16 {
+  aspect-ratio: 9 / 16;
+  max-width: min(100%, 400px);
+  margin-inline: auto;
+}
+.ana-post__content .ana-embed__ratio .ana-embed__iframe,
+.ana-post__content .ana-embed__ratio .ana-video__el {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: none !important;
+  border: 0;
+  border-radius: 0;
+  display: block;
+  object-fit: cover;
+}
+.ana-post__content .ana-embed--aparat .ana-embed__ratio {
+  border: 2px solid rgba(231, 76, 60, 0.35);
+}
+.ana-post__content .ana-video--16x9 .ana-embed__ratio {
+  border: 2px solid rgba(48, 144, 182, 0.35);
+}
+.ana-post__content .ana-video--9x16 .ana-embed__ratio {
+  border: 2px solid rgba(48, 144, 182, 0.45);
+  box-shadow: 0 24px 48px rgba(29, 38, 79, 0.22);
+}
+.ana-post__content .ana-video__el::-webkit-media-controls-panel {
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.65));
+}
+
+.ana-post__content .ana-embed--podcast {
+  margin: 2rem 0;
+}
+.ana-post__content .ana-podcast {
+  position: relative;
+  border-radius: 20px;
+  padding: 2px;
+  background: linear-gradient(135deg, #3090b6 0%, #1d264f 45%, #e7f0ea 100%);
+  box-shadow: 0 16px 42px rgba(29, 38, 79, 0.14);
+}
+.ana-post__content .ana-podcast__glow {
+  position: absolute;
+  inset: 10% 15%;
+  background: radial-gradient(circle, rgba(48, 144, 182, 0.22), transparent 70%);
+  filter: blur(24px);
+  pointer-events: none;
+  z-index: 0;
+}
+.ana-post__content .ana-podcast__shell {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 18px;
+  align-items: center;
+  padding: 18px 20px;
+  border-radius: 18px;
+  background: linear-gradient(160deg, #f8fbff 0%, #eef4f8 55%, #e7f0ea 100%);
+  border: 1px solid rgba(29, 38, 79, 0.08);
+}
+.ana-post__content .ana-podcast__art {
+  flex: 0 0 auto;
+  width: 72px;
+  height: 72px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: linear-gradient(145deg, #1d264f, #3090b6);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 8px 20px rgba(29, 38, 79, 0.2);
+}
+.ana-post__content .ana-podcast__art-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 0;
+}
+.ana-post__content .ana-podcast__art-fallback {
+  font-size: 1.75rem;
+  line-height: 1;
+}
+.ana-post__content .ana-podcast__body {
+  flex: 1 1 220px;
+  min-width: 0;
+}
+.ana-post__content .ana-podcast__meta {
+  margin-bottom: 12px;
+}
+.ana-post__content .ana-podcast__title {
+  display: block;
+  font-size: 1.05rem;
+  color: #1d264f;
+  margin-bottom: 2px;
+}
+.ana-post__content .ana-podcast__sub {
+  font-size: 0.85rem;
+  color: #667085;
+}
+.ana-post__content .ana-podcast__controls {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.ana-post__content .ana-podcast__play {
+  flex: 0 0 auto;
+  width: 48px;
+  height: 48px;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  background: linear-gradient(145deg, #3090b6, #1d6f91);
+  box-shadow: 0 8px 22px rgba(48, 144, 182, 0.4);
+  display: grid;
+  place-items: center;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.ana-post__content .ana-podcast__play:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 26px rgba(48, 144, 182, 0.45);
+}
+.ana-post__content .ana-podcast__play-icon {
+  display: block;
+  width: 0;
+  height: 0;
+  margin-inline-start: 4px;
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  border-left: 12px solid #fff;
+}
+.ana-post__content .ana-podcast.is-playing .ana-podcast__play-icon {
+  width: 14px;
+  height: 16px;
+  margin-inline-start: 0;
+  border: none;
+  background: none;
+  box-shadow: inset 0 0 0 12px #fff;
+  clip-path: inset(0 45% 0 45%);
+}
+.ana-post__content .ana-podcast__timeline {
+  flex: 1 1 120px;
+  min-width: 0;
+}
+.ana-post__content .ana-podcast__seek {
+  width: 100%;
+  accent-color: #3090b6;
+  cursor: pointer;
+  height: 6px;
+}
+.ana-post__content .ana-podcast__times {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  color: #667085;
+  margin-top: 4px;
+  font-variant-numeric: tabular-nums;
+}
+.ana-post__content .ana-podcast__audio {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
 .ana-post__side {
   display: flex;
   flex-direction: column;

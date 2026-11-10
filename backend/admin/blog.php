@@ -354,6 +354,7 @@ require __DIR__ . '/_layout_top.php';
 </div>
 
 <script src="https://cdn.ckeditor.com/4.25.2-lts/full/ckeditor.js"></script>
+<script src="ckeditor-ana-media.js?ver=20261110"></script>
 <script>
 (function () {
   var EDITOR_ID = "blog-content";
@@ -388,6 +389,7 @@ require __DIR__ . '/_layout_top.php';
       baseFloatZIndex: CKE_FLOAT_Z,
       removePlugins: "exportpdf",
       allowedContent: true,
+      extraPlugins: "anaaparat,anavideo,anapodcast",
       toolbar: [
         { name: "document", items: ["Source", "-", "Maximize", "Preview"] },
         { name: "clipboard", items: ["Cut", "Copy", "Paste", "PasteText", "PasteFromWord", "-", "Undo", "Redo"] },
@@ -396,7 +398,7 @@ require __DIR__ . '/_layout_top.php';
         { name: "basicstyles", items: ["Bold", "Italic", "Underline", "Strike", "Subscript", "Superscript", "-", "RemoveFormat"] },
         { name: "paragraph", items: ["NumberedList", "BulletedList", "-", "Outdent", "Indent", "-", "Blockquote", "CreateDiv", "-", "JustifyRight", "JustifyCenter", "JustifyLeft", "JustifyBlock"] },
         { name: "links", items: ["Link", "Unlink", "Anchor"] },
-        { name: "insert", items: ["Image", "Table", "HorizontalRule", "SpecialChar"] },
+        { name: "insert", items: ["Image", "AnaAparat", "AnaVideo", "AnaPodcast", "Table", "HorizontalRule", "SpecialChar"] },
         "/",
         { name: "styles", items: ["Styles", "Format", "Font", "FontSize"] },
         { name: "colors", items: ["TextColor", "BGColor"] },

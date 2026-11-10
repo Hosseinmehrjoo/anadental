@@ -13,6 +13,7 @@ if (is_file($modalPath)) {
 <script src="/assets/bundles/ds-bundle-js-409edc9553bebdaf.js?ver=20261021i" defer></script>
 <script src="/assets/js/api.js" defer></script>
 <script src="/assets/js/site.js" defer></script>
+<script src="/assets/js/ana-embed-players.js?ver=20261110" defer></script>
 <?php readfile(__DIR__ . '/clarity.fragment.html'); ?>
 </body>
 </html>
