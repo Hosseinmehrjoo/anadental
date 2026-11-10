@@ -40,26 +40,6 @@
     return "";
   }
 
-  var iconAparat =
-    "data:image/svg+xml;charset=UTF-8," +
-    encodeURIComponent(
-      '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="3" y="6" width="18" height="12" rx="3" fill="#e74c3c"/><path d="M10 9.5v5l5-2.5-5-2.5Z" fill="#fff"/></svg>'
-    );
-  var iconVideo =
-    "data:image/svg+xml;charset=UTF-8," +
-    encodeURIComponent(
-      '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"><rect x="2" y="5" width="20" height="14" rx="3" stroke="#3090b6" stroke-width="2"/><path d="M10 9.5v5l5-2.5-5-2.5Z" fill="#3090b6"/></svg>'
-    );
-  var iconPodcast =
-    "data:image/svg+xml;charset=UTF-8," +
-    encodeURIComponent(
-      '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#1d264f" stroke-width="2"/><circle cx="12" cy="12" r="3" fill="#3090b6"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3" stroke="#1d264f" stroke-width="1.5" stroke-linecap="round"/></svg>'
-    );
-
-  CKEDITOR.skin.addIcon("ana-aparat", iconAparat);
-  CKEDITOR.skin.addIcon("ana-video", iconVideo);
-  CKEDITOR.skin.addIcon("ana-podcast", iconPodcast);
-
   function buildAparatHtml(hash) {
     var src =
       "https://www.aparat.com/video/video/embed/videohash/" +
@@ -291,41 +271,25 @@
     };
   });
 
-  CKEDITOR.plugins.add("anaaparat", {
-    icons: "ana-aparat",
+  CKEDITOR.plugins.add("anamedia", {
     init: function (editor) {
       editor.addCommand("insertAnaAparat", new CKEDITOR.dialogCommand("anaAparatDialog"));
+      editor.addCommand("insertAnaVideo", new CKEDITOR.dialogCommand("anaVideoDialog"));
+      editor.addCommand("insertAnaPodcast", new CKEDITOR.dialogCommand("anaPodcastDialog"));
       editor.ui.addButton("AnaAparat", {
         label: "ویدیو آپارات",
         command: "insertAnaAparat",
-        toolbar: "insert",
-        icon: "ana-aparat",
+        toolbar: "insert,10",
       });
-    },
-  });
-
-  CKEDITOR.plugins.add("anavideo", {
-    icons: "ana-video",
-    init: function (editor) {
-      editor.addCommand("insertAnaVideo", new CKEDITOR.dialogCommand("anaVideoDialog"));
       editor.ui.addButton("AnaVideo", {
         label: "ویدیو ۱۶:۹ / ۹:۱۶",
         command: "insertAnaVideo",
-        toolbar: "insert",
-        icon: "ana-video",
+        toolbar: "insert,20",
       });
-    },
-  });
-
-  CKEDITOR.plugins.add("anapodcast", {
-    icons: "ana-podcast",
-    init: function (editor) {
-      editor.addCommand("insertAnaPodcast", new CKEDITOR.dialogCommand("anaPodcastDialog"));
       editor.ui.addButton("AnaPodcast", {
         label: "پادکست",
         command: "insertAnaPodcast",
-        toolbar: "insert",
-        icon: "ana-podcast",
+        toolbar: "insert,30",
       });
     },
   });

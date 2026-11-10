@@ -354,13 +354,54 @@ require __DIR__ . '/_layout_top.php';
 </div>
 
 <script src="https://cdn.ckeditor.com/4.25.2-lts/full/ckeditor.js"></script>
-<script src="ckeditor-ana-media.js?ver=20261110"></script>
+<script src="/backend/admin/ckeditor-ana-media.js?ver=20261111c"></script>
 <script>
 (function () {
   var EDITOR_ID = "blog-content";
   var MODAL_ID = "blog-form-modal";
+  var MEDIA_PLUGIN_OK = !!(typeof CKEDITOR !== "undefined" && CKEDITOR.plugins && CKEDITOR.plugins.registered && CKEDITOR.plugins.registered.anamedia);
   /* Must stay above --z-admin-modal / --z-admin-media-picker in wp-admin.css */
   var CKE_FLOAT_Z = 100250;
+
+  function baseEditorConfig() {
+    return {
+      language: "fa",
+      contentsLangDirection: "rtl",
+      height: 380,
+      baseFloatZIndex: CKE_FLOAT_Z,
+      removePlugins: "exportpdf",
+      allowedContent: true,
+      toolbar: [
+        { name: "document", items: ["Source", "-", "Maximize", "Preview"] },
+        { name: "clipboard", items: ["Cut", "Copy", "Paste", "PasteText", "PasteFromWord", "-", "Undo", "Redo"] },
+        { name: "editing", items: ["Find", "Replace", "-", "SelectAll"] },
+        "/",
+        { name: "basicstyles", items: ["Bold", "Italic", "Underline", "Strike", "Subscript", "Superscript", "-", "RemoveFormat"] },
+        { name: "paragraph", items: ["NumberedList", "BulletedList", "-", "Outdent", "Indent", "-", "Blockquote", "CreateDiv", "-", "JustifyRight", "JustifyCenter", "JustifyLeft", "JustifyBlock"] },
+        { name: "links", items: ["Link", "Unlink", "Anchor"] },
+        { name: "insert", items: ["Image", "AnaAparat", "AnaVideo", "AnaPodcast", "Table", "HorizontalRule", "SpecialChar"] },
+        "/",
+        { name: "styles", items: ["Styles", "Format", "Font", "FontSize"] },
+        { name: "colors", items: ["TextColor", "BGColor"] },
+        { name: "tools", items: ["ShowBlocks"] }
+      ]
+    };
+  }
+
+  function toolbarWithoutMedia(cfg) {
+    var next = JSON.parse(JSON.stringify(cfg));
+    next.extraPlugins = "";
+    next.toolbar = next.toolbar.map(function (row) {
+      if (!row.items) return row;
+      return {
+        name: row.name,
+        items: row.items.filter(function (item) {
+          return item !== "AnaAparat" && item !== "AnaVideo" && item !== "AnaPodcast";
+        })
+      };
+    });
+    return next;
+  }
 
   function refreshEditorLayout() {
     if (typeof CKEDITOR === "undefined") return;
@@ -382,29 +423,13 @@ require __DIR__ . '/_layout_top.php';
     var el = document.getElementById(EDITOR_ID);
     if (!el) return;
 
-    CKEDITOR.replace(EDITOR_ID, {
-      language: "fa",
-      contentsLangDirection: "rtl",
-      height: 380,
-      baseFloatZIndex: CKE_FLOAT_Z,
-      removePlugins: "exportpdf",
-      allowedContent: true,
-      extraPlugins: "anaaparat,anavideo,anapodcast",
-      toolbar: [
-        { name: "document", items: ["Source", "-", "Maximize", "Preview"] },
-        { name: "clipboard", items: ["Cut", "Copy", "Paste", "PasteText", "PasteFromWord", "-", "Undo", "Redo"] },
-        { name: "editing", items: ["Find", "Replace", "-", "SelectAll"] },
-        "/",
-        { name: "basicstyles", items: ["Bold", "Italic", "Underline", "Strike", "Subscript", "Superscript", "-", "RemoveFormat"] },
-        { name: "paragraph", items: ["NumberedList", "BulletedList", "-", "Outdent", "Indent", "-", "Blockquote", "CreateDiv", "-", "JustifyRight", "JustifyCenter", "JustifyLeft", "JustifyBlock"] },
-        { name: "links", items: ["Link", "Unlink", "Anchor"] },
-        { name: "insert", items: ["Image", "AnaAparat", "AnaVideo", "AnaPodcast", "Table", "HorizontalRule", "SpecialChar"] },
-        "/",
-        { name: "styles", items: ["Styles", "Format", "Font", "FontSize"] },
-        { name: "colors", items: ["TextColor", "BGColor"] },
-        { name: "tools", items: ["ShowBlocks"] }
-      ]
-    });
+    var cfg = baseEditorConfig();
+    if (MEDIA_PLUGIN_OK) {
+      cfg.extraPlugins = "anamedia";
+    } else {
+      cfg = toolbarWithoutMedia(cfg);
+    }
+    CKEDITOR.replace(EDITOR_ID, cfg);
   }
 
   document.addEventListener("DOMContentLoaded", initEditor);
