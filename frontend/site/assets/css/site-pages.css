@@ -716,19 +716,35 @@
   display: grid;
   gap: 1.25rem;
 }
+.ana-contact-page__info,
+.ana-contact-page__map {
+  min-width: 0;
+}
+.ana-contact-page__map .ana-map-embed {
+  margin-top: auto;
+}
+.ana-contact-page__map .ana-map-embed--static img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 526 / 337;
+  object-fit: cover;
+}
 @media (min-width: 960px) {
   .ana-contact-page {
     grid-template-columns: 1fr 1fr;
-    align-items: start;
+    align-items: stretch;
   }
+  .ana-contact-page__info,
   .ana-contact-page__map {
-    grid-column: 1 / -1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
   }
   .ana-contact-page__form {
     grid-column: 1 / -1;
-    max-width: 640px;
-    justify-self: center;
     width: 100%;
+    max-width: none;
+    justify-self: stretch;
   }
 }
 
