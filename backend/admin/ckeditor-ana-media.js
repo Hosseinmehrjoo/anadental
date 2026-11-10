@@ -40,6 +40,64 @@
     return "";
   }
 
+  function ensureAnaCkeIcons() {
+    if (window.__ANA_CKE_MEDIA_ICONS__) return;
+    window.__ANA_CKE_MEDIA_ICONS__ = true;
+    try {
+      CKEDITOR.skin.addIcon(
+        "ana-aparat",
+        "data:image/svg+xml;charset=UTF-8," +
+          encodeURIComponent(
+            '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="3" fill="#e74c3c"/><path fill="#fff" d="M10 9.5v5l5-2.5z"/></svg>'
+          )
+      );
+      CKEDITOR.skin.addIcon(
+        "ana-video",
+        "data:image/svg+xml;charset=UTF-8," +
+          encodeURIComponent(
+            '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="3" fill="#3090b6"/><path fill="#fff" d="M10 10v4l4-2z"/></svg>'
+          )
+      );
+      CKEDITOR.skin.addIcon(
+        "ana-podcast",
+        "data:image/svg+xml;charset=UTF-8," +
+          encodeURIComponent(
+            '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="#1d264f"/><circle cx="12" cy="12" r="3" fill="#e7f0ea"/><path stroke="#e7f0ea" stroke-width="1.5" d="M12 4v3M12 17v3M5 12h2M17 12h2"/></svg>'
+          )
+      );
+    } catch (e) {}
+  }
+
+  function mediaPickButton(tab, fieldId, kind) {
+    return {
+      type: "button",
+      id: "pick_" + fieldId,
+      label: "انتخاب از رسانه",
+      onClick: function () {
+        var dlg = this.getDialog();
+        if (!window.AnaMediaPicker || typeof window.AnaMediaPicker.pick !== "function") {
+          window.alert("کتابخانه رسانه آماده نیست. صفحه را یک بار رفرش کنید.");
+          return false;
+        }
+        window.AnaMediaPicker.pick({
+          kind: kind,
+          onSelect: function (path) {
+            dlg.getContentElement(tab, fieldId).setValue(path);
+          },
+        });
+        return false;
+      },
+    };
+  }
+
+  function mediaHintHtml() {
+    return (
+      '<p class="muted" style="margin:6px 0 0;font-size:12px;line-height:1.65">' +
+      'از دکمه «انتخاب از رسانه» استفاده کنید یا در تب دیگر از منوی <a href="media.php" target="_blank" rel="noopener">رسانه</a> فایل را آپلود کنید.' +
+      "</p>"
+    );
+  }
+
   function buildAparatHtml(hash) {
     var src =
       "https://www.aparat.com/video/video/embed/videohash/" +
@@ -181,6 +239,7 @@
               labelLayout: "vertical",
               validate: CKEDITOR.dialog.validate.notEmpty("آدرس ویدیو الزامی است."),
             },
+            mediaPickButton("tab1", "videoUrl", "video"),
             {
               type: "select",
               id: "videoAspect",
@@ -197,6 +256,7 @@
               label: "تصویر پوستر (اختیاری)",
               labelLayout: "vertical",
             },
+            mediaPickButton("tab1", "videoPoster", "image"),
             {
               type: "text",
               id: "videoCaption",
@@ -205,7 +265,7 @@
             },
             {
               type: "html",
-              html: '<p class="muted" style="margin:0;font-size:12px">فایل را از «رسانه» آپلود کنید و مسیر نسبی را اینجا بچسبانید.</p>',
+              html: mediaHintHtml(),
             },
           ],
         },
@@ -251,11 +311,17 @@
               labelLayout: "vertical",
               validate: CKEDITOR.dialog.validate.notEmpty("آدرس فایل صوتی الزامی است."),
             },
+            mediaPickButton("tab1", "podUrl", "audio"),
             {
               type: "text",
               id: "podCover",
               label: "کاور (اختیاری)",
               labelLayout: "vertical",
+            },
+            mediaPickButton("tab1", "podCover", "image"),
+            {
+              type: "html",
+              html: mediaHintHtml(),
             },
           ],
         },
@@ -273,6 +339,7 @@
 
   CKEDITOR.plugins.add("anamedia", {
     init: function (editor) {
+      ensureAnaCkeIcons();
       editor.addCommand("insertAnaAparat", new CKEDITOR.dialogCommand("anaAparatDialog"));
       editor.addCommand("insertAnaVideo", new CKEDITOR.dialogCommand("anaVideoDialog"));
       editor.addCommand("insertAnaPodcast", new CKEDITOR.dialogCommand("anaPodcastDialog"));
@@ -280,16 +347,19 @@
         label: "ویدیو آپارات",
         command: "insertAnaAparat",
         toolbar: "insert,10",
+        icon: "ana-aparat",
       });
       editor.ui.addButton("AnaVideo", {
         label: "ویدیو ۱۶:۹ / ۹:۱۶",
         command: "insertAnaVideo",
         toolbar: "insert,20",
+        icon: "ana-video",
       });
       editor.ui.addButton("AnaPodcast", {
         label: "پادکست",
         command: "insertAnaPodcast",
         toolbar: "insert,30",
+        icon: "ana-podcast",
       });
     },
   });

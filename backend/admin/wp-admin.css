@@ -26,7 +26,7 @@
   --z-admin-bar: 99999;
   --z-admin-modal: 100050;
   --z-admin-modal-nested: 100100;
-  --z-admin-media-picker: 100150;
+  --z-admin-media-picker: 100320;
   --z-cke-panel: 100250;
   --z-cke-dialog-cover: 100260;
   --z-cke-dialog: 100270;
@@ -1153,6 +1153,20 @@ body.ad-media-picker-open { overflow: hidden; }
   height: 100%;
   object-fit: cover;
   display: block;
+}
+.ad-media-picker__thumb--file {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  background: linear-gradient(160deg, #e8f4f8, #eef4ff);
+  color: #1d264f;
+  font-size: 1.25rem;
+}
+.ad-media-picker__thumb--file small {
+  font-size: 10px;
+  color: #5c6778;
 }
 .ad-media-picker__item strong {
   font-size: 11px;

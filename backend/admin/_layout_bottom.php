@@ -6,7 +6,7 @@ $isLogin = $currentScript === 'login.php';
     </div><!-- .wrap -->
   </div><!-- #wpcontent -->
 </div><!-- .admin-shell -->
-<script src="media-picker.js?ver=20261014blocks" defer></script>
+<script src="media-picker.js?ver=20261111d" defer></script>
 <script src="media-fields.js?ver=20261014blocks" defer></script>
 <script src="admin-modal.js?ver=20261017zindex" defer></script>
 <?php else: ?>

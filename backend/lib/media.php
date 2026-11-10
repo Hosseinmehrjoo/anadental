@@ -152,6 +152,35 @@ function ad_media_upload_video(array $file, string $subdir = 'videos', string $a
     return $path;
 }
 
+function ad_media_upload_audio(array $file, string $subdir = 'audio', string $alt = ''): string
+{
+    $path = ad_upload_audio($file, $subdir);
+    if ($path !== '') {
+        ad_media_register($path, $alt, $file);
+    }
+    return $path;
+}
+
+function ad_media_upload_auto(array $file, string $alt = ''): string
+{
+    $tmp = (string) ($file['tmp_name'] ?? '');
+    $mime = '';
+    if ($tmp !== '' && is_file($tmp)) {
+        $finfo = new finfo(FILEINFO_MIME_TYPE);
+        $mime = (string) $finfo->file($tmp);
+    }
+    if ($mime === '' && !empty($file['type'])) {
+        $mime = (string) $file['type'];
+    }
+    if (str_starts_with($mime, 'video/')) {
+        return ad_media_upload_video($file, 'videos', $alt);
+    }
+    if (str_starts_with($mime, 'audio/')) {
+        return ad_media_upload_audio($file, 'audio', $alt);
+    }
+    return ad_media_upload($file, '', $alt);
+}
+
 function ad_media_alt(string $path): string
 {
     $path = trim(str_replace('\\', '/', $path));

@@ -223,6 +223,75 @@ function ad_upload_video(array $file, string $subdir = 'videos'): string
 }
 
 /**
+ * Upload an audio file into the public uploads tree (subdir e.g. audio).
+ */
+function ad_upload_audio(array $file, string $subdir = 'audio'): string
+{
+    if (($file['error'] ?? UPLOAD_ERR_NO_FILE) === UPLOAD_ERR_NO_FILE) {
+        return '';
+    }
+    if (($file['error'] ?? UPLOAD_ERR_OK) !== UPLOAD_ERR_OK) {
+        $code = (int) ($file['error'] ?? UPLOAD_ERR_OK);
+        if ($code === UPLOAD_ERR_INI_SIZE || $code === UPLOAD_ERR_FORM_SIZE) {
+            throw new RuntimeException('حجم فایل از حد مجاز سرور بیشتر است.');
+        }
+        throw new RuntimeException('خطا در آپلود فایل صوتی (کد ' . $code . ').');
+    }
+    $allowed = [
+        'audio/mpeg' => 'mp3',
+        'audio/mp3' => 'mp3',
+        'audio/mp4' => 'm4a',
+        'audio/x-m4a' => 'm4a',
+        'audio/ogg' => 'ogg',
+        'audio/wav' => 'wav',
+        'audio/x-wav' => 'wav',
+    ];
+    $finfo = new finfo(FILEINFO_MIME_TYPE);
+    $mime = $finfo->file($file['tmp_name']);
+    $origName = (string) ($file['name'] ?? '');
+    $ext = strtolower(pathinfo($origName, PATHINFO_EXTENSION));
+    if (!is_string($mime) || !isset($allowed[$mime])) {
+        $extMap = ['mp3' => 'mp3', 'm4a' => 'm4a', 'ogg' => 'ogg', 'wav' => 'wav'];
+        if ($ext !== '' && isset($extMap[$ext]) && in_array($mime, ['application/octet-stream', 'binary/octet-stream'], true)) {
+            $mime = match ($ext) {
+                'ogg' => 'audio/ogg',
+                'wav' => 'audio/wav',
+                'm4a' => 'audio/mp4',
+                default => 'audio/mpeg',
+            };
+        }
+    }
+    if (!is_string($mime) || !isset($allowed[$mime])) {
+        throw new RuntimeException('فرمت صوتی مجاز نیست (mp3, m4a, ogg, wav).');
+    }
+    $maxBytes = 80 * 1024 * 1024;
+    if (($file['size'] ?? 0) > $maxBytes) {
+        throw new RuntimeException('حجم فایل صوتی نباید بیشتر از ۸۰ مگابایت باشد.');
+    }
+
+    $config = ad_config();
+    $baseDir = rtrim($config['upload_dir'], '/\\') . '/';
+    if ($subdir !== '') {
+        $baseDir .= trim($subdir, '/\\') . '/';
+    }
+    if (!is_dir($baseDir) && !mkdir($baseDir, 0755, true) && !is_dir($baseDir)) {
+        throw new RuntimeException('ساخت پوشه آپلود ممکن نشد.');
+    }
+
+    $name = bin2hex(random_bytes(8)) . '.' . $allowed[$mime];
+    $dest = $baseDir . $name;
+    if (!move_uploaded_file($file['tmp_name'], $dest)) {
+        throw new RuntimeException('ذخیره فایل صوتی ممکن نشد.');
+    }
+
+    $prefix = rtrim($config['upload_url_prefix'], '/') . '/';
+    if ($subdir !== '') {
+        $prefix .= trim($subdir, '/') . '/';
+    }
+    return $prefix . $name;
+}
+
+/**
  * Store an already-local video file (e.g. merged chunks) into the uploads tree.
  */
 function ad_save_video_from_local_path(string $srcPath, string $origName, string $subdir = 'videos'): string

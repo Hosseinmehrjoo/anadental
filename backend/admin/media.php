@@ -88,13 +88,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         'error' => $_FILES['files']['error'][$i] ?? UPLOAD_ERR_NO_FILE,
                         'size' => $_FILES['files']['size'][$i] ?? 0,
                     ];
-                    $path = ad_media_upload($file, '', $alt);
+                    $path = ad_media_upload_auto($file, $alt);
                     if ($path !== '') {
                         $uploaded++;
                     }
                 }
             } elseif (!empty($_FILES['file']['name'])) {
-                $path = ad_media_upload($_FILES['file'], '', $alt);
+                $path = ad_media_upload_auto($_FILES['file'], $alt);
                 if ($path !== '') {
                     $uploaded = 1;
                 }
@@ -102,7 +102,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             if ($uploaded < 1) {
                 throw new RuntimeException('هیچ فایلی آپلود نشد.');
             }
-            ad_flash_set('ok', $uploaded . ' تصویر به رسانه افزوده شد.');
+            ad_flash_set('ok', $uploaded . ' فایل به رسانه افزوده شد.');
             header('Location: media.php');
             exit;
         }
@@ -122,7 +122,7 @@ $pageTitle = 'رسانه';
 require __DIR__ . '/_layout_top.php';
 ?>
 <h1>رسانه</h1>
-<p class="muted">مدیریت تصاویر سایت مانند کتابخانه رسانه وردپرس — آپلود، متن جایگزین (alt) و حذف.</p>
+<p class="muted">مدیریت تصویر، ویدیو و فایل صوتی سایت — آپلود، متن جایگزین (alt) و حذف.</p>
 
 <div class="card">
   <h2>افزودن رسانه جدید</h2>
@@ -130,11 +130,12 @@ require __DIR__ . '/_layout_top.php';
     <input type="hidden" name="csrf" value="<?= ad_e(ad_csrf_token()) ?>" />
     <input type="hidden" name="action" value="upload" />
     <div class="form-section">
-      <h3 class="form-section__title">آپلود تصویر</h3>
+      <h3 class="form-section__title">آپلود فایل</h3>
       <div class="form-grid">
         <div class="field">
-          <label>انتخاب تصویر (چندتایی)</label>
-          <input type="file" name="files[]" accept="image/*" multiple required />
+          <label>انتخاب فایل (چندتایی)</label>
+          <input type="file" name="files[]" accept="image/*,video/mp4,video/webm,video/quicktime,audio/mpeg,audio/mp3,audio/mp4,audio/ogg,audio/wav,.mp3,.m4a,.mp4,.webm,.mov,.ogg,.wav" multiple required />
+          <p class="hint">تصویر، ویدیو (mp4, webm, mov) یا پادکست (mp3, m4a, ogg)</p>
         </div>
         <div class="field field--span-2">
           <label>متن جایگزین (alt)</label>

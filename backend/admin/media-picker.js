@@ -16,6 +16,8 @@
   var cache = null;
   /** @type {Object.<string, string>} */
   var selected = {};
+  var pickerCallback = null;
+  var pickerFilter = "any";
 
   function qs(sel, root) {
     return (root || document).querySelector(sel);
@@ -36,7 +38,8 @@
     if (clearBtn) clearBtn.hidden = !multi;
     if (footerEl) footerEl.hidden = !multi;
     if (titleEl) {
-      titleEl.textContent = multi ? "انتخاب چند تصویر از رسانه" : "انتخاب از رسانه";
+      var filterHint = filterLabel(pickerFilter);
+      titleEl.textContent = multi ? "انتخاب چند تصویر از رسانه" : "انتخاب از رسانه — " + filterHint;
     }
     if (hintEl) {
       hintEl.textContent = multi
@@ -177,13 +180,68 @@
     syncChrome();
   }
 
+  function itemKind(item) {
+    var mime = String((item && item.mime) || "").toLowerCase();
+    var path = String((item && item.path) || "").toLowerCase();
+    if (mime.indexOf("video/") === 0) return "video";
+    if (mime.indexOf("audio/") === 0) return "audio";
+    if (mime.indexOf("image/") === 0) return "image";
+    if (/\.(mp4|webm|mov|m4v)(\?|$)/.test(path)) return "video";
+    if (/\.(mp3|m4a|ogg|wav)(\?|$)/.test(path)) return "audio";
+    if (/\.(jpe?g|png|gif|webp|avif|svg)(\?|$)/.test(path)) return "image";
+    return "file";
+  }
+
+  function matchesFilter(item, kind) {
+    kind = kind || "any";
+    if (kind === "any") return true;
+    if (kind === "image") return itemKind(item) === "image";
+    if (kind === "video") return itemKind(item) === "video";
+    if (kind === "audio") return itemKind(item) === "audio";
+    return true;
+  }
+
+  function thumbHtml(item) {
+    var path = String(item.path || "");
+    var kind = itemKind(item);
+    if (kind === "image") {
+      return (
+        '<span class="ad-media-picker__thumb"><img src="../../' +
+        escapeHtml(path) +
+        '" alt="" loading="lazy" /></span>'
+      );
+    }
+    var label = kind === "video" ? "ویدیو" : kind === "audio" ? "صوتی" : "فایل";
+  var glyph = kind === "video" ? "▶" : kind === "audio" ? "♫" : "📄";
+    return (
+      '<span class="ad-media-picker__thumb ad-media-picker__thumb--file" data-kind="' +
+      escapeHtml(kind) +
+      '"><span aria-hidden="true">' +
+      glyph +
+      "</span><small>" +
+      escapeHtml(label) +
+      "</small></span>"
+    );
+  }
+
+  function filterLabel(kind) {
+    if (kind === "image") return "فقط تصاویر";
+    if (kind === "video") return "فقط ویدیوها";
+    if (kind === "audio") return "فقط فایل‌های صوتی";
+    return "همه فایل‌ها";
+  }
+
   function renderGrid(items, query) {
     if (!grid) return;
     var multi = isMultiField();
     var q = String(query || "").trim().toLowerCase();
+    var kind = pickerFilter || "any";
+    var pool = (items || []).filter(function (item) {
+      return matchesFilter(item, kind);
+    });
     var filtered = !q
-      ? items
-      : items.filter(function (item) {
+      ? pool
+      : pool.filter(function (item) {
           var hay = ((item.filename || "") + " " + (item.alt_text || "") + " " + (item.path || "")).toLowerCase();
           return hay.indexOf(q) !== -1;
         });
@@ -208,9 +266,7 @@
           (isSelected ? "true" : "false") +
           '">' +
           (multi ? '<span class="ad-media-picker__check" aria-hidden="true"></span>' : "") +
-          '<span class="ad-media-picker__thumb"><img src="../../' +
-          escapeHtml(path) +
-          '" alt="" loading="lazy" /></span>' +
+          thumbHtml(item) +
           "<strong>" +
           escapeHtml(item.filename || path) +
           "</strong>" +
@@ -233,6 +289,25 @@
   }
 
   function applySingle(path, alt) {
+    if (pickerCallback) {
+      if (!path) return;
+      var item = null;
+      if (cache && cache.length) {
+        for (var ci = 0; ci < cache.length; ci++) {
+          if (cache[ci].path === path) {
+            item = cache[ci];
+            break;
+          }
+        }
+      }
+      try {
+        pickerCallback(path, alt || "", item || null);
+      } catch (err) {}
+      pickerCallback = null;
+      pickerFilter = "any";
+      closePicker();
+      return;
+    }
     if (!activeBtn || !path) return;
     var form = activeBtn.closest("form") || document;
     var targetName = activeBtn.getAttribute("data-media-target") || "";
@@ -292,6 +367,8 @@
   function openPicker(btn) {
     ensureModal();
     activeBtn = btn;
+    pickerCallback = null;
+    pickerFilter = btn && btn.getAttribute("data-media-kind") ? String(btn.getAttribute("data-media-kind")) : "image";
     selected = {};
     modal.hidden = false;
     document.body.classList.add("ad-media-picker-open");
@@ -310,7 +387,16 @@
           return;
         }
         cache = json.data || [];
-        setStatus(cache.length ? "" : "کتابخانه رسانه خالی است. ابتدا از منوی رسانه آپلود کنید.");
+        var pool = (cache || []).filter(function (item) {
+          return matchesFilter(item, pickerFilter);
+        });
+        if (!cache.length) {
+          setStatus("کتابخانه رسانه خالی است. از منوی «رسانه» آپلود کنید.");
+        } else if (!pool.length) {
+          setStatus("برای این نوع فایل موردی نیست. از منوی «رسانه» ویدیو یا صوت آپلود کنید.", true);
+        } else {
+          setStatus("");
+        }
         renderGrid(cache, "");
       })
       .catch(function () {
@@ -323,8 +409,61 @@
     modal.hidden = true;
     document.body.classList.remove("ad-media-picker-open");
     activeBtn = null;
+    pickerCallback = null;
+    pickerFilter = "any";
     selected = {};
   }
+
+  function openPickerCallback(options) {
+    ensureModal();
+    options = options || {};
+    activeBtn = null;
+    pickerCallback = typeof options.onSelect === "function" ? options.onSelect : null;
+    pickerFilter = options.kind || "any";
+    selected = {};
+    modal.hidden = false;
+    document.body.classList.add("ad-media-picker-open");
+    setStatus("در حال بارگذاری…");
+    if (grid) grid.innerHTML = "";
+    if (searchEl) searchEl.value = "";
+    syncChrome();
+    if (titleEl) {
+      titleEl.textContent = "انتخاب از رسانه — " + filterLabel(pickerFilter);
+    }
+    if (hintEl) {
+      hintEl.textContent = "روی فایل کلیک کنید. بدون فایل؟ در تب دیگر از «رسانه» آپلود کنید.";
+    }
+
+    fetch("media-json.php", { credentials: "same-origin" })
+      .then(function (r) {
+        return r.json();
+      })
+      .then(function (json) {
+        if (!json || !json.ok) {
+          setStatus((json && json.error) || "بارگذاری رسانه ممکن نشد.", true);
+          return;
+        }
+        cache = json.data || [];
+        var pool = (cache || []).filter(function (item) {
+          return matchesFilter(item, pickerFilter);
+        });
+        if (!cache.length) {
+          setStatus("کتابخانه رسانه خالی است. از منوی «رسانه» آپلود کنید.");
+        } else if (!pool.length) {
+          setStatus("برای این نوع فایل موردی نیست. از منوی «رسانه» آپلود کنید.", true);
+        } else {
+          setStatus("");
+        }
+        renderGrid(cache, "");
+      })
+      .catch(function () {
+        setStatus("ارتباط با سرور برقرار نشد.", true);
+      });
+  }
+
+  window.AnaMediaPicker = {
+    pick: openPickerCallback,
+  };
 
   document.addEventListener("click", function (e) {
     var openBtn = e.target && e.target.closest ? e.target.closest("[data-media-picker]") : null;

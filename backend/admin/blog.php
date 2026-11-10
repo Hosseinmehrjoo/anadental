@@ -354,7 +354,7 @@ require __DIR__ . '/_layout_top.php';
 </div>
 
 <script src="https://cdn.ckeditor.com/4.25.2-lts/full/ckeditor.js"></script>
-<script src="/backend/admin/ckeditor-ana-media.js?ver=20261111c"></script>
+<script src="/backend/admin/ckeditor-ana-media.js?ver=20261111d"></script>
 <script>
 (function () {
   var EDITOR_ID = "blog-content";
